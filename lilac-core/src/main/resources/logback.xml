@@ -2,28 +2,29 @@
 <configuration>
 	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+			<!-- %d{HH:mm:ss.SSS} %level [%thread] %caller{1} - %msg%n -->
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
 		</encoder>
 	</appender>
 
-	<appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>logs/quickstart.log</file>
+	<appender name="rollingFile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/lilac.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>logs/quickstart.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<fileNamePattern>logs/lilac.%d{yyyy-MM-dd}.log</fileNamePattern>
 		</rollingPolicy>
 		<encoder>
-			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+			</pattern>
 		</encoder>
 	</appender>
-
 	<!-- project default level -->
-	<logger name="org.springside.examples.quickstart" level="INFO" />
-
-	<!--log4jdbc -->
-	<!-- <logger name="jdbc.sqltiming" level="INFO"/> -->
+	<logger name="com.lilac" level="DEBUG" />
+	<logger name="druid.sql" level="WARN" />
 
 	<root level="WARN">
 		<appender-ref ref="console" />
-		<appender-ref ref="rollingFile" />
+		<!-- <appender-ref ref="rollingFile" /> -->
 	</root>
 </configuration>
