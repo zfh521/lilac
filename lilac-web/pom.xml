@@ -6,6 +6,7 @@
 		<groupId>com.lilac</groupId>
 		<artifactId>lilac-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../lilac-parent</relativePath>
 	</parent>
 	<artifactId>lilac-web</artifactId>
 	<version>1.0.0-SNAPSHOT</version>

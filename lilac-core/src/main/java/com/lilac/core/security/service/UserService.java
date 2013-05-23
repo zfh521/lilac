@@ -1,17 +1,5 @@
 /*
  * Copyright 2013 Jimmy Leung
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
  */
 
 package com.lilac.core.security.service;
@@ -21,8 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lilac.core.security.entity.UserInfo;
-import com.lilac.core.security.repository.UserDao;
-import com.lilac.core.service.BaseService;
+import com.lilac.core.security.repository.UserRepository;
+import com.lilac.core.service.AbstractService;
+import com.lilac.core.util.EncodeUtils;
+import com.lilac.core.util.StringUtils;
+import com.lilac.core.util.security.DigestUtils;
 
 /**
  * @author Jimmy Leung
@@ -30,10 +21,10 @@ import com.lilac.core.service.BaseService;
  */
 @Service
 @Transactional
-public class UserService implements BaseService<UserInfo, String> {
+public class UserService extends AbstractService<UserRepository, UserInfo, String> {
 
-    @Autowired
-    private UserDao userDao;
+    public static final int  HASH_INTERATIONS = 1024;
+    private static final int SALT_SIZE        = 8;
 
     /*
      * (non-Javadoc)
@@ -41,34 +32,37 @@ public class UserService implements BaseService<UserInfo, String> {
      */
     @Override
     public UserInfo save(UserInfo entity) {
-        return userDao.save(entity);
+        if (StringUtils.isBlank(entity.getId())) {
+            entryptPassword(entity);
+        }
+        return super.save(entity);
+    }
+
+    /**
+     * 设定安全的密码，生成随机的salt并经过1024次 sha-1 hash
+     */
+    private void entryptPassword(UserInfo user) {
+        user.setPlainPassword(user.getPassword());
+
+        byte[] salt = DigestUtils.generateSalt(SALT_SIZE);
+        user.setSalt(EncodeUtils.encodeHex(salt));
+
+        byte[] hashPassword = DigestUtils.sha1(user.getPassword().getBytes(), salt, HASH_INTERATIONS);
+        user.setPassword(EncodeUtils.encodeHex(hashPassword));
+    }
+
+    public UserInfo findOneByInstanceId(String userId) {
+        return repository.findUserByInstanceId(userId);
     }
 
     /*
      * (non-Javadoc)
-     * @see com.lilac.core.service.BaseService#delete(java.io.Serializable)
+     * @see com.lilac.core.security.service.AbstractService#setRepository(com.lilac.core.repository.BaseRepository)
      */
     @Override
-    public void delete(String id) {
-        userDao.delete(id);
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see com.lilac.core.service.BaseService#deleteById(java.io.Serializable)
-     */
-    @Override
-    public void deleteById(String id) {
-        userDao.deleteById(id);
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see com.lilac.core.service.BaseService#findOne(java.io.Serializable)
-     */
-    @Override
-    public UserInfo findOne(String id) {
-        return userDao.findOne(id);
+    @Autowired
+    public void setRepository(UserRepository repository) {
+        this.repository = repository;
     }
 
 }

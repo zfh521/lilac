@@ -20,10 +20,10 @@
 		</encoder>
 	</appender>
 	<!-- project default level -->
-	<logger name="com.lilac" level="DEBUG" />
+	<logger name="com.lilac" level="INFO" />
 	<logger name="druid.sql" level="WARN" />
 
-	<root level="WARN">
+	<root level="INFO">
 		<appender-ref ref="console" />
 		<!-- <appender-ref ref="rollingFile" /> -->
 	</root>

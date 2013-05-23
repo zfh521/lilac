@@ -1,17 +1,5 @@
 /*
  * Copyright 2013 Jimmy Leung
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
  */
 
 package com.lilac.core.entity;
@@ -19,6 +7,7 @@ package com.lilac.core.entity;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.EntityListeners;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
@@ -26,13 +15,17 @@ import javax.persistence.Transient;
 import javax.persistence.Version;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.hibernate.envers.Audited;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.alibaba.fastjson.JSON;
 import com.lilac.core.annotation.I18NMessage;
-import com.lilac.core.entity.sys.SpaceDefinition;
+import com.lilac.core.entity.support.EntityListener;
+import com.lilac.core.entity.support.EntityStatus;
+import com.lilac.core.entity.support.UUIDEntity;
 import com.lilac.core.security.entity.UserInfo;
-import com.lilac.core.util.DateUtils;
+import com.lilac.core.sys.entity.SpaceDefinition;
 
 /**
  * @author Jimmy Leung
@@ -40,216 +33,308 @@ import com.lilac.core.util.DateUtils;
  */
 
 @SuppressWarnings("serial")
+@EntityListeners(value = EntityListener.class)
 @MappedSuperclass
-public abstract class BaseEntity extends UUIDEntity {
+@Audited
+public abstract class BaseEntity extends UUIDEntity implements IEntity<String> {
 
     @Transient
-    protected static final Logger log            = LoggerFactory.getLogger(BaseEntity.class);
+    protected static final Logger log = LoggerFactory.getLogger(BaseEntity.class);
+
+    protected String              instanceId;
 
     @Column(insertable = true, updatable = false)
     @I18NMessage(code = "LBL_SPACE_DEFINITION")
     protected SpaceDefinition     spaceDefinition;
 
     @Column(insertable = true, updatable = false)
-    protected Date                createdTime    = DateUtils.getCurrentDate();
-    @ManyToOne(optional = false)
+    protected Date                createdTime;
+    @ManyToOne
     @JoinColumn(insertable = true, updatable = false)
     protected UserInfo            createdUser;
-    @Column(insertable = false, updatable = true)
-    protected Date                lastUpdateTime = DateUtils.getCurrentDate();
+    @Column(insertable = true, updatable = true)
+    protected Date                lastUpdateTime;
     @ManyToOne
-    @JoinColumn(insertable = false, updatable = true)
+    @JoinColumn(insertable = true, updatable = true)
     protected UserInfo            lastUpdateUser;
-    protected Integer             currentVersion = new Integer(1);
-    protected Integer             activeVersion  = new Integer(1);
+    protected Integer             currentVersion;
+    protected Integer             activeVersion;
     @Version
     protected Integer             version;
-    protected EntityStatus        entityStatus   = EntityStatus.ENABLED;
+    protected EntityStatus        entityStatus;
 
-    private String                attribute1;
-    private String                attribute2;
-    private String                attribute3;
-    private String                attribute4;
-    private String                attribute5;
+    protected String              attribute1;
+    protected String              attribute2;
+    protected String              attribute3;
+    protected String              attribute4;
+    protected String              attribute5;
 
-    /**
-     * @return the createdTime
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.s#getInstanceId()
      */
+    @Override
+    public String getInstanceId() {
+        return instanceId;
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.s#setInstanceId(java.lang.String)
+     */
+    @Override
+    public void setInstanceId(String instanceId) {
+        this.instanceId = instanceId;
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.s#getSpaceDefinition()
+     */
+    @Override
+    public SpaceDefinition getSpaceDefinition() {
+        return spaceDefinition;
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.s#setSpaceDefinition(com.lilac.core.entity.sys.SpaceDefinition)
+     */
+    @Override
+    public void setSpaceDefinition(SpaceDefinition spaceDefinition) {
+        this.spaceDefinition = spaceDefinition;
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#getCreatedTime()
+     */
+    @Override
     public Date getCreatedTime() {
         return createdTime;
     }
 
-    /**
-     * @param createdTime the createdTime to set
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#setCreatedTime(java.util.Date)
      */
+    @Override
     public void setCreatedTime(Date createdTime) {
         this.createdTime = createdTime;
     }
 
-    /**
-     * @return the createdUser
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#getCreatedUser()
      */
+    @Override
     public UserInfo getCreatedUser() {
         return createdUser;
     }
 
-    /**
-     * @param createdUser the createdUser to set
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#setCreatedUser(com.lilac.core.security.entity.UserInfo)
      */
+    @Override
     public void setCreatedUser(UserInfo createdUser) {
         this.createdUser = createdUser;
     }
 
-    /**
-     * @return the lastUpdateTime
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#getLastUpdateTime()
      */
+    @Override
     public Date getLastUpdateTime() {
         return lastUpdateTime;
     }
 
-    /**
-     * @param lastUpdateTime the lastUpdateTime to set
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#setLastUpdateTime(java.util.Date)
      */
+    @Override
     public void setLastUpdateTime(Date lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
     }
 
-    /**
-     * @return the lastUpdateUser
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#getLastUpdateUser()
      */
+    @Override
     public UserInfo getLastUpdateUser() {
         return lastUpdateUser;
     }
 
-    /**
-     * @param lastUpdateUser the lastUpdateUser to set
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#setLastUpdateUser(com.lilac.core.security.entity.UserInfo)
      */
+    @Override
     public void setLastUpdateUser(UserInfo lastUpdateUser) {
         this.lastUpdateUser = lastUpdateUser;
     }
 
-    /**
-     * @return the currentVersion
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#getCurrentVersion()
      */
+    @Override
     public Integer getCurrentVersion() {
         return currentVersion;
     }
 
-    /**
-     * @param currentVersion the currentVersion to set
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#setCurrentVersion(java.lang.Integer)
      */
+    @Override
     public void setCurrentVersion(Integer currentVersion) {
         this.currentVersion = currentVersion;
     }
 
-    /**
-     * @return the activeVersion
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#getActiveVersion()
      */
+    @Override
     public Integer getActiveVersion() {
         return activeVersion;
     }
 
-    /**
-     * @param activeVersion the activeVersion to set
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#setActiveVersion(java.lang.Integer)
      */
+    @Override
     public void setActiveVersion(Integer activeVersion) {
         this.activeVersion = activeVersion;
     }
 
-    /**
-     * @return the entityStatus
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#getEntityStatus()
      */
+    @Override
     public EntityStatus getEntityStatus() {
         return entityStatus;
     }
 
-    /**
-     * @param entityStatus the entityStatus to set
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#setEntityStatus(com.lilac.core.entity.EntityStatus)
      */
+    @Override
     public void setEntityStatus(EntityStatus entityStatus) {
         this.entityStatus = entityStatus;
     }
 
-    /**
-     * @return the version
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#getVersion()
      */
+    @Override
     public Integer getVersion() {
         return version;
     }
 
-    /**
-     * @param version the version to set
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#setVersion(java.lang.Integer)
      */
+    @Override
     public void setVersion(Integer version) {
         this.version = version;
     }
 
-    /**
-     * @return the attribute1
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#getAttribute1()
      */
+    @Override
     public String getAttribute1() {
         return attribute1;
     }
 
-    /**
-     * @param attribute1 the attribute1 to set
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#setAttribute1(java.lang.String)
      */
+    @Override
     public void setAttribute1(String attribute1) {
         this.attribute1 = attribute1;
     }
 
-    /**
-     * @return the attribute2
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#getAttribute2()
      */
+    @Override
     public String getAttribute2() {
         return attribute2;
     }
 
-    /**
-     * @param attribute2 the attribute2 to set
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#setAttribute2(java.lang.String)
      */
+    @Override
     public void setAttribute2(String attribute2) {
         this.attribute2 = attribute2;
     }
 
-    /**
-     * @return the attribute3
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#getAttribute3()
      */
+    @Override
     public String getAttribute3() {
         return attribute3;
     }
 
-    /**
-     * @param attribute3 the attribute3 to set
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#setAttribute3(java.lang.String)
      */
+    @Override
     public void setAttribute3(String attribute3) {
         this.attribute3 = attribute3;
     }
 
-    /**
-     * @return the attribute4
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#getAttribute4()
      */
+    @Override
     public String getAttribute4() {
         return attribute4;
     }
 
-    /**
-     * @param attribute4 the attribute4 to set
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#setAttribute4(java.lang.String)
      */
+    @Override
     public void setAttribute4(String attribute4) {
         this.attribute4 = attribute4;
     }
 
-    /**
-     * @return the attribute5
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#getAttribute5()
      */
+    @Override
     public String getAttribute5() {
         return attribute5;
     }
 
-    /**
-     * @param attribute5 the attribute5 to set
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#setAttribute5(java.lang.String)
      */
+    @Override
     public void setAttribute5(String attribute5) {
         this.attribute5 = attribute5;
     }
@@ -258,9 +343,22 @@ public abstract class BaseEntity extends UUIDEntity {
      * (non-Javadoc)
      * @see java.lang.Object#toString()
      */
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#toString()
+     */
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see com.lilac.core.entity.IEntity#toJSONString()
+     */
+    @Override
+    public String toJSONString() {
+        return JSON.toJSONString(this);
     }
 
 }
