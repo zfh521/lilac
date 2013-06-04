@@ -6,24 +6,29 @@ package com.lilac.core.i18n;
 
 import java.util.Locale;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.util.Assert;
 
 /**
  * @author Jimmy Leung
  * @since 2013-5-7
  */
-public final class MessageHelper {
+public final class MessageHolder implements InitializingBean {
 
+    protected static final Logger        log = LoggerFactory.getLogger(MessageHolder.class);
     private static MessageSourceAccessor messageSourceAccessor;
 
-    private MessageHelper(){
+    private MessageHolder(){
     }
 
     /**
      * @param messageSourceAccessor the messageSourceAccessor to set
      */
-    public static void setMessageSourceAccessor(MessageSourceAccessor messageSourceAccessor) {
-        MessageHelper.messageSourceAccessor = messageSourceAccessor;
+    public void setMessageSourceAccessor(MessageSourceAccessor messageSourceAccessor) {
+        MessageHolder.messageSourceAccessor = messageSourceAccessor;
     }
 
     /**
@@ -116,6 +121,16 @@ public final class MessageHelper {
      */
     public static String getMessage(String code, Object[] args, Locale locale) {
         return messageSourceAccessor.getMessage(code, args, locale);
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
+     */
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        Assert.notNull(messageSourceAccessor, "messageSourceAccessor should not be null");
+        log.info("messageSourceAccessor has registered,MessageHolder has been initialized successfully");
     }
 
 }

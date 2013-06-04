@@ -8,6 +8,9 @@
 <script type="text/javascript" src="init.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>lilac</title>
+<script type="text/javascript">
+	
+</script>
 </head>
 <body>
 </body>

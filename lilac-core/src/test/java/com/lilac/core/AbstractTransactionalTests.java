@@ -26,7 +26,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
  * @author Jimmy Leung
  * @since 2013-4-22
  */
-@ActiveProfiles("development")
+@ActiveProfiles("test")
 @DirtiesContext
 @ContextConfiguration(locations = { "/spring/applicationContext-*.xml" })
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = false)

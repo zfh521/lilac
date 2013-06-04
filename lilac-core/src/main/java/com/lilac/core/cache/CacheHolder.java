@@ -4,6 +4,9 @@
 
 package com.lilac.core.cache;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.cache.Cache;
 import org.springframework.cache.Cache.ValueWrapper;
 import org.springframework.cache.ehcache.EhCacheCacheManager;
@@ -15,15 +18,17 @@ import com.lilac.core.util.BeanUtils;
  * @author Jimmy Leung
  * @since 2013-5-22
  */
-public final class CacheHelper {
+public final class CacheHolder implements InitializingBean {
 
+    protected static final Logger        log = LoggerFactory.getLogger(CacheHolder.class);
     protected static EhCacheCacheManager ehCacheManager;
 
     /**
      * @param ehCacheManager the ehCacheManager to set
      */
-    public static void setEhCacheManager(EhCacheCacheManager ehCacheManager) {
-        CacheHelper.ehCacheManager = ehCacheManager;
+    public void setEhCacheManager(EhCacheCacheManager ehCacheManager) {
+        Assert.isNull(CacheHolder.ehCacheManager, "ehCacheManager should be null");
+        CacheHolder.ehCacheManager = ehCacheManager;
     }
 
     protected Cache getDefaultCache() {
@@ -78,6 +83,16 @@ public final class CacheHelper {
 
     public <T> String buildDefaultCacheKey(Object id, Class<T> clazz) {
         return clazz.getName() + "_" + id;
+    }
+
+    /*
+     * (non-Javadoc)
+     * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
+     */
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        Assert.notNull(ehCacheManager, "ehCacheManager should not be null");
+        log.info("ehCacheManager has registered,CacheHolder has been initialized successfully");
     }
 
 }

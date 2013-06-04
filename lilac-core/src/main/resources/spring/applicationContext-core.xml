@@ -16,7 +16,8 @@
 
 	<description>spring config </description>
 
-	<bean class="com.lilac.core.config.Application" lazy-init="false"></bean>
+	<bean class="com.lilac.core.SpringContextHolder" lazy-init="false">
+	</bean>
 
 	<!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
 	<context:component-scan base-package="com.lilac.core">
@@ -30,53 +31,6 @@
 			</bean>
 		</property>
 	</bean>
-
-	<!-- spring对ehcache的缓存工厂支持 -->
-	<bean id="ehCacheManagerFactory"
-		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
-		<property name="configLocation" value="classpath:ehcache/ehcache.xml" />
-	</bean>
-
-	<!-- spring对ehcache的缓存管理 -->
-	<bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
-		<property name="cacheManager" ref="ehCacheManagerFactory"></property>
-	</bean>
-
-	<bean
-		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-		<property name="staticMethod"
-			value="com.lilac.core.cache.CacheHelper.setEhCacheManager"></property>
-		<property name="arguments">
-			<list>
-				<ref bean="ehCacheManager" />
-			</list>
-		</property>
-	</bean>
-
-	<!-- I18N config -->
-	<bean id="messageSource" class="com.lilac.core.i18n.I18NMessageSource">
-		<property name="useCodeAsDefaultMessage" value="true" />
-		<property name="messageService" ref="i18NMessageService"></property>
-	</bean>
-
-	<bean id="messageSourceAccessor"
-		class="org.springframework.context.support.MessageSourceAccessor">
-		<constructor-arg ref="messageSource" />
-	</bean>
-
-	<bean
-		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-		<property name="staticMethod"
-			value="com.lilac.core.i18n.MessageHelper.setMessageSourceAccessor"></property>
-		<property name="arguments">
-			<list>
-				<ref bean="messageSourceAccessor" />
-			</list>
-		</property>
-	</bean>
-
-	<!-- 使用缓存annotation 配置 -->
-	<cache:annotation-driven cache-manager="ehCacheManager" />
 
 	<!-- Jpa Entity Manager 配置 -->
 	<bean id="entityManagerFactory"
@@ -117,6 +71,41 @@
 	<bean id="validator"
 		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 
+	<!-- spring对ehcache的缓存工厂支持 -->
+	<bean id="ehCacheManagerFactory"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:ehcache/ehcache.xml" />
+	</bean>
+
+	<!-- spring对ehcache的缓存管理 -->
+	<bean id="ehCacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+		<property name="cacheManager" ref="ehCacheManagerFactory"></property>
+	</bean>
+
+	<!-- 使用缓存annotation 配置 -->
+	<cache:annotation-driven cache-manager="ehCacheManager" />
+
+	<bean class="com.lilac.core.cache.CacheHolder" lazy-init="false"
+		depends-on="ehCacheManager">
+		<property name="ehCacheManager" ref="ehCacheManager"></property>
+	</bean>
+
+	<!-- I18N config -->
+	<bean id="messageSource" class="com.lilac.core.i18n.I18NMessageSource">
+		<property name="useCodeAsDefaultMessage" value="true" />
+		<property name="messageService" ref="i18NMessageService"></property>
+	</bean>
+
+	<bean id="messageSourceAccessor"
+		class="org.springframework.context.support.MessageSourceAccessor">
+		<constructor-arg ref="messageSource" />
+	</bean>
+
+	<bean class="com.lilac.core.i18n.MessageHolder" lazy-init="false"
+		depends-on="messageSourceAccessor">
+		<property name="messageSourceAccessor" ref="messageSourceAccessor"></property>
+	</bean>
+
 	<!-- production环境 -->
 	<beans profile="production">
 		<context:property-placeholder
@@ -153,7 +142,8 @@
 	<beans profile="development">
 		<context:property-placeholder
 			ignore-unresolvable="true"
-			location="classpath*:spring/application.properties,spring/application.development.properties" />
+			location="classpath*:spring/application.properties,
+					  classpath*:spring/application.test.properties" />
 		<!-- 数据源配置, 使用Druid数据库连接池 -->
 		<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 			init-method="init" destroy-method="close">

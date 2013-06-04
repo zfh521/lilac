@@ -11,7 +11,7 @@ import org.hibernate.envers.RevisionType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.lilac.core.config.Application;
+import com.lilac.core.SpringContextHolder;
 import com.lilac.core.security.shiro.UserHolder;
 import com.lilac.core.sys.service.ObjectTypeService;
 import com.lilac.core.util.DateUtils;
@@ -46,7 +46,7 @@ public class CustomRevisionListener implements EntityTrackingRevisionListener {
         transactionLog.setInstanceId(String.valueOf(entityId));
         transactionLog.setRevisionType(revisionType.name());
         transactionLog.setTransEndTime(DateUtils.getCurrentDate());
-        ObjectTypeService objectTypeService = Application.getBean("objectTypeService", ObjectTypeService.class);
+        ObjectTypeService objectTypeService = SpringContextHolder.getBean("objectTypeService", ObjectTypeService.class);
         ObjectType objectType = objectTypeService.findByClassName(entityName);
         transactionLog.setObjectType(objectType);
     }

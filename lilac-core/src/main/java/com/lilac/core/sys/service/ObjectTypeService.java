@@ -4,7 +4,6 @@
 
 package com.lilac.core.sys.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lilac.core.service.AbstractService;
@@ -17,16 +16,6 @@ import com.lilac.core.sys.repository.ObjectTypeRepository;
  */
 @Service
 public class ObjectTypeService extends AbstractService<ObjectTypeRepository, ObjectType, String> {
-
-    /*
-     * (non-Javadoc)
-     * @see com.lilac.core.security.service.AbstractService#setRepository(com.lilac.core.repository.BaseRepository)
-     */
-    @Override
-    @Autowired
-    public void setRepository(ObjectTypeRepository repository) {
-        this.repository = repository;
-    }
 
     /**
      * @param className

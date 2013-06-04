@@ -2,7 +2,7 @@
  * Copyright 2013 Jimmy Leung
  */
 
-package com.lilac.core.config;
+package com.lilac.core;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,9 +16,9 @@ import org.springframework.context.ApplicationContextAware;
  * @author Jimmy Leung
  * @since 2013-5-14
  */
-public class Application implements InitializingBean, ApplicationContextAware {
+public class SpringContextHolder implements InitializingBean, ApplicationContextAware {
 
-    protected static final Logger     log = LoggerFactory.getLogger(Application.class);
+    protected static final Logger     log = LoggerFactory.getLogger(SpringContextHolder.class);
 
     private static ApplicationContext applicationContext;
 
@@ -30,7 +30,7 @@ public class Application implements InitializingBean, ApplicationContextAware {
     @Override
     @Autowired
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        Application.applicationContext = applicationContext;
+        SpringContextHolder.applicationContext = applicationContext;
     }
 
     /*

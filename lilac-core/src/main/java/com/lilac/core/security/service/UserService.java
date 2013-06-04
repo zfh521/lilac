@@ -4,7 +4,6 @@
 
 package com.lilac.core.security.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,16 +52,6 @@ public class UserService extends AbstractService<UserRepository, UserInfo, Strin
 
     public UserInfo findOneByInstanceId(String userId) {
         return repository.findUserByInstanceId(userId);
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see com.lilac.core.security.service.AbstractService#setRepository(com.lilac.core.repository.BaseRepository)
-     */
-    @Override
-    @Autowired
-    public void setRepository(UserRepository repository) {
-        this.repository = repository;
     }
 
 }

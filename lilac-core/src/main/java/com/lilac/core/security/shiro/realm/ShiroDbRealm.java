@@ -18,7 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 
-import com.lilac.core.i18n.MessageHelper;
+import com.lilac.core.i18n.MessageHolder;
 import com.lilac.core.security.entity.UserInfo;
 import com.lilac.core.security.service.UserService;
 import com.lilac.core.security.shiro.ShiroUser;
@@ -54,14 +54,14 @@ public class ShiroDbRealm extends AuthorizingRealm {
 
         UsernamePasswordToken authcToken = (UsernamePasswordToken) token;
         Assert.notNull(authcToken.getUsername(),
-                       MessageHelper.getMessage("INVALID_ARGUMENT",
-                                                new String[] { MessageHelper.getMessage("LBL_USERNAME") }));
+                       MessageHolder.getMessage("INVALID_ARGUMENT",
+                                                new String[] { MessageHolder.getMessage("LBL_USERNAME") }));
         Assert.notNull(authcToken.getPassword(),
-                       MessageHelper.getMessage("INVALID_ARGUMENT",
-                                                new String[] { MessageHelper.getMessage("LBL_PASSWORD") }));
+                       MessageHolder.getMessage("INVALID_ARGUMENT",
+                                                new String[] { MessageHolder.getMessage("LBL_PASSWORD") }));
         UserInfo user = userService.findOneByInstanceId(authcToken.getUsername());
         if (user == null) {
-            throw new UnknownAccountException(MessageHelper.getMessage("INVALID_USER_NAME"));
+            throw new UnknownAccountException(MessageHolder.getMessage("INVALID_USER_NAME"));
         } else {
 
             byte[] salt = EncodeUtils.decodeHex(user.getSalt());

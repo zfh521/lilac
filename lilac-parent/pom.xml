@@ -68,8 +68,8 @@
 					<configuration>
 						<source>${javaSourceCompatibility}</source>
 						<target>${javaTargetCompatibility}</target>
+						<showWarnings>true</showWarnings>
 						<fork>true</fork>
-						<executable>${javaCompilerExecutable_16}</executable>
 						<encoding>${sourceEncoding}</encoding>
 					</configuration>
 				</plugin>
@@ -131,7 +131,7 @@
 					<artifactId>maven-site-plugin</artifactId>
 					<version>${versionPluginSite}</version>
 					<configuration>
-						<finalName>snail</finalName>
+						<finalName>lilac</finalName>
 						<locales>en,zh</locales>
 						<outputDirectory>${basedir}/site</outputDirectory>
 					</configuration>

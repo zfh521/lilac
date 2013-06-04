@@ -30,3 +30,10 @@ public interface UserRepository extends BaseRepository<UserInfo, String> {
     UserInfo findUserByInstanceId(String userId);
 
 }
+
+/**
+ * @author Jimmy Leung
+ * @since 2013-5-25
+ */
+interface UserRepositoryCustom {
+}

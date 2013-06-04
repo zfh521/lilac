@@ -40,19 +40,15 @@
 		<jdk.version>1.6</jdk.version>
 
 		<!-- 项目属性 -->
-		<!-- <jdbc.driver.groupId>com.h2database</jdbc.driver.groupId>
-		<jdbc.driver.artifactId>h2</jdbc.driver.artifactId>
-		<jdbc.driver.version>${h2.version}</jdbc.driver.version> -->
-		
+		<!-- <jdbc.driver.groupId>com.h2database</jdbc.driver.groupId> <jdbc.driver.artifactId>h2</jdbc.driver.artifactId> 
+			<jdbc.driver.version>${h2.version}</jdbc.driver.version> -->
+
 		<jdbc.driver.groupId>com.oracle</jdbc.driver.groupId>
-		<jdbc.driver.artifactId>classes12</jdbc.driver.artifactId> 
-		<jdbc.driver.version>10.2.0.2.0</jdbc.driver.version> 
-		
-		<!--
-		<jdbc.driver.groupId>mysql</jdbc.driver.groupId>
-		<jdbc.driver.artifactId>mysql-connector-java</jdbc.driver.artifactId> 
-		<jdbc.driver.version>5.1.21</jdbc.driver.version>
-		-->
+		<jdbc.driver.artifactId>classes12</jdbc.driver.artifactId>
+		<jdbc.driver.version>10.2.0.2.0</jdbc.driver.version>
+
+		<!-- <jdbc.driver.groupId>mysql</jdbc.driver.groupId> <jdbc.driver.artifactId>mysql-connector-java</jdbc.driver.artifactId> 
+			<jdbc.driver.version>5.1.21</jdbc.driver.version> -->
 	</properties>
 	<!-- 依赖项定义 -->
 	<dependencies>
@@ -94,6 +90,10 @@
 					<groupId>junit</groupId>
 					<artifactId>junit-dep</artifactId>
 				</exclusion>
+				<exclusion>
+					<artifactId>spring-tx</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -131,14 +131,14 @@
 
 		<!-- SECURITY begin -->
 		<dependency>
-  			<groupId>org.apache.shiro</groupId>
-  			<artifactId>shiro-core</artifactId>
-  			<version>${shiro.version}</version>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-core</artifactId>
+			<version>${shiro.version}</version>
 		</dependency>
 		<dependency>
-  			<groupId>org.apache.shiro</groupId>
-  			<artifactId>shiro-aspectj</artifactId>
-  			<version>${shiro.version}</version>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-aspectj</artifactId>
+			<version>${shiro.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
@@ -157,7 +157,7 @@
 			<version>${shiro.version}</version>
 		</dependency>
 		<!-- SECURITY end -->
-		
+
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache-core</artifactId>
@@ -168,7 +168,7 @@
 			<artifactId>commons-codec</artifactId>
 			<version>${commons-codec.version}</version>
 		</dependency>
-	
+
 		<!-- JSR303 BeanValidator -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -272,30 +272,30 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${spring.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
 	<build>
 		<plugins>
-			<!-- compiler插件, 设定JDK版本 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.0</version>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${versionPluginjar}</version>
 				<configuration>
-					<source>${jdk.version}</source>
-					<target>${jdk.version}</target>
-					<showWarnings>true</showWarnings>
-				</configuration>
-			</plugin>
-
-			<!-- war打包插件, 设定war包名称不带版本号 -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.3</version>
-				<configuration>
-					<warName>${project.artifactId}</warName>
+					<excludes>
+						<exclude>spring/applicationContext-shiro.xml</exclude>
+					</excludes>
 				</configuration>
 			</plugin>
 
@@ -319,27 +319,6 @@
 				</dependencies>
 			</plugin>
 
-			<!-- 增加functional test的Source目录 -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>1.7</version>
-				<executions>
-					<execution>
-						<id>add-functional-source</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>add-test-source</goal>
-						</goals>
-						<configuration>
-							<sources>
-								<source>src/test/functional</source>
-							</sources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-
 			<!-- cobertura插件, 设置不需要计算覆盖率的类 -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -349,30 +328,8 @@
 					<instrumentation>
 						<excludes>
 							<exclude>**/entity/**/*.class</exclude>
-							<exclude>**/*Controller.class</exclude>
 						</excludes>
 					</instrumentation>
-				</configuration>
-			</plugin>
-
-			<!-- eclipse插件, 设定wtp版本 -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.9</version>
-				<configuration>
-					<downloadSources>true</downloadSources>
-					<downloadJavadocs>false</downloadJavadocs>
-					<wtpversion>2.0</wtpversion>
-					<!-- 增加设置项目encoding的文件 -->
-					<additionalConfig>
-						<file>
-							<name>.settings/org.eclipse.core.resources.prefs</name>
-							<content>
-					                <![CDATA[eclipse.preferences.version=1${line.separator}encoding/<project>=${project.build.sourceEncoding}${line.separator}]]>
-							</content>
-						</file>
-					</additionalConfig>
 				</configuration>
 			</plugin>
 
@@ -403,6 +360,7 @@
 										<exclude>aspectj:aspectj*</exclude>
 										<exclude>org.springframework:2.*</exclude>
 										<exclude>org.springframework:3.0.*</exclude>
+										<exclude>org.springframework:3.1.*</exclude>
 									</excludes>
 								</bannedDependencies>
 							</rules>
@@ -448,38 +406,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<profiles>
-		<!-- 执行@Category(Smoke.class)的TestCase -->
-		<profile>
-			<id>run-smoke</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<configuration>
-							<includedGroups>org.snail.modules.test.category.Smoke</includedGroups>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-
-		<!-- 忽略所有@Category(UnStable.class)的TestCase -->
-		<profile>
-			<id>skip-unstable</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<configuration>
-							<excludedGroups>org.snail.modules.test.category.UnStable</excludedGroups>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 </project>
