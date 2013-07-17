@@ -22,7 +22,9 @@ import com.lilac.core.i18n.MessageHolder;
 import com.lilac.core.security.entity.UserInfo;
 import com.lilac.core.security.service.UserService;
 import com.lilac.core.security.shiro.ShiroUser;
+import com.lilac.core.util.ArrayUtils;
 import com.lilac.core.util.EncodeUtils;
+import com.lilac.core.util.StringUtils;
 
 /**
  * @author Jimmy Leung
@@ -53,15 +55,30 @@ public class ShiroDbRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 
         UsernamePasswordToken authcToken = (UsernamePasswordToken) token;
+
+        String username = authcToken.getUsername();
+        if (StringUtils.isBlank(username)) {
+            throw new AuthenticationException(
+                                              MessageHolder.getMessage("INVALID_ARGUMENT",
+                                                                       new String[] { MessageHolder.getMessage("LBL_USERNAME") }));
+        }
+        char[] password = authcToken.getPassword();
+        if (ArrayUtils.isEmpty(password)) {
+            throw new AuthenticationException(
+                                              MessageHolder.getMessage("INVALID_ARGUMENT",
+                                                                       new String[] { MessageHolder.getMessage("LBL_PASSWORD") }));
+        }
+
         Assert.notNull(authcToken.getUsername(),
                        MessageHolder.getMessage("INVALID_ARGUMENT",
                                                 new String[] { MessageHolder.getMessage("LBL_USERNAME") }));
         Assert.notNull(authcToken.getPassword(),
                        MessageHolder.getMessage("INVALID_ARGUMENT",
                                                 new String[] { MessageHolder.getMessage("LBL_PASSWORD") }));
-        UserInfo user = userService.findOneByInstanceId(authcToken.getUsername());
+        UserInfo user = userService.findOneByInstanceId(StringUtils.upperCase(authcToken.getUsername()));
         if (user == null) {
-            throw new UnknownAccountException(MessageHolder.getMessage("INVALID_USER_NAME"));
+            throw new UnknownAccountException(MessageHolder.getMessage("INVALID_USERNAME_OR_PASSWORD",
+                                                                       "Please login with your Username and Password."));
         } else {
 
             byte[] salt = EncodeUtils.decodeHex(user.getSalt());

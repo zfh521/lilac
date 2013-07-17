@@ -4,26 +4,26 @@
 		timeToLiveSeconds对象处于缓存状态的最多秒数 -->
 	<diskStore path="./.cache" />
 	<defaultCache maxElementsInMemory="10000" eternal="false"
-		timeToIdleSeconds="300" timeToLiveSeconds="600" overflowToDisk="true" />
+		timeToIdleSeconds="3" timeToLiveSeconds="6" overflowToDisk="true" />
 
 	<cache name="shiroCache" maxElementsInMemory="10000" eternal="false"
 		timeToIdleSeconds="120" timeToLiveSeconds="120" overflowToDisk="false"
 		diskPersistent="false" diskExpiryThreadIntervalSeconds="120" />
 
 	<cache name="com.lilac.core.i18n.I18NMessage"
-		maxElementsInMemory="10000" eternal="false" timeToIdleSeconds="300"
-		timeToLiveSeconds="600" overflowToDisk="true" />
+		maxElementsInMemory="10000" eternal="false" timeToIdleSeconds="3"
+		timeToLiveSeconds="6" overflowToDisk="true" />
 
-	<cache name="userCache" maxElementsInMemory="300" eternal="false"
-		timeToLiveSeconds="600" overflowToDisk="false">
+	<cache name="userCache" maxElementsInMemory="3" eternal="false"
+		timeToLiveSeconds="6" overflowToDisk="false">
 	</cache>
 
 	<cache name="defaultCache" maxElementsInMemory="100000" eternal="false"
-		timeToLiveSeconds="600" overflowToDisk="false">
+		timeToLiveSeconds="6" overflowToDisk="false">
 	</cache>
 
-	<cache name="shiroAuthorizationCache" maxElementsInMemory="300"
-		eternal="false" timeToLiveSeconds="600" overflowToDisk="false">
+	<cache name="shiroAuthorizationCache" maxElementsInMemory="3"
+		eternal="false" timeToLiveSeconds="6" overflowToDisk="false">
 	</cache>
 
 </ehcache>

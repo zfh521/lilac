@@ -13,7 +13,7 @@ import com.lilac.core.entity.BaseEntity;
  * @since 2013-5-7
  */
 @SuppressWarnings("serial")
-@Entity
+@Entity(name = "I18N_MESSAGE")
 public class I18NMessage extends BaseEntity {
 
     private String code;

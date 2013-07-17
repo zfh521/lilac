@@ -83,6 +83,15 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>DruidStatView</servlet-name>
+		<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DruidStatView</servlet-name>
+		<url-pattern>/druid/*</url-pattern>
+	</servlet-mapping>
+
 	<session-config>
 		<session-timeout>20</session-timeout>
 	</session-config>
@@ -99,4 +108,10 @@
 		<error-code>404</error-code>
 		<location>/WEB-INF/views/error/404.jsp</location>
 	</error-page>
+	<jsp-config>
+		<taglib>
+			<taglib-uri>lilac</taglib-uri>
+			<taglib-location>/WEB-INF/tlds/lilac.tld</taglib-location>
+		</taglib>
+	</jsp-config>
 </web-app>

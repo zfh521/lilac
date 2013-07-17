@@ -9,6 +9,8 @@ import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.context.MessageSourceResolvable;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.util.Assert;
 
@@ -121,6 +123,27 @@ public final class MessageHolder implements InitializingBean {
      */
     public static String getMessage(String code, Object[] args, Locale locale) {
         return messageSourceAccessor.getMessage(code, args, locale);
+    }
+
+    /**
+     * Retrieve the given MessageSourceResolvable (e.g. an ObjectError instance) in the default Locale.
+     * 
+     * @param resolvable the MessageSourceResolvable
+     * @return the message
+     */
+    public static String getMessage(MessageSourceResolvable resolvable) {
+        return messageSourceAccessor.getMessage(resolvable, LocaleContextHolder.getLocale());
+    }
+
+    /**
+     * Retrieve the given MessageSourceResolvable (e.g. an ObjectError instance) in the given Locale.
+     * 
+     * @param resolvable the MessageSourceResolvable
+     * @param locale Locale in which to do lookup
+     * @return the message
+     */
+    public static String getMessage(MessageSourceResolvable resolvable, Locale locale) {
+        return messageSourceAccessor.getMessage(resolvable, locale);
     }
 
     /*

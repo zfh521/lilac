@@ -37,6 +37,8 @@ public final class StringUtils extends org.apache.commons.lang3.StringUtils {
 
     private static final char   EXTENSION_SEPARATOR      = '.';
 
+    private static final char   UNDERLINE_SEPARATOR      = '_';
+
     // ---------------------------------------------------------------------
     // General convenience methods for working with Strings
     // ---------------------------------------------------------------------
@@ -1122,6 +1124,72 @@ public final class StringUtils extends org.apache.commons.lang3.StringUtils {
      */
     public static String arrayToCommaDelimitedString(Object[] arr) {
         return arrayToDelimitedString(arr, ",");
+    }
+
+    /**
+     * helloWorld --> HELLO_WORLD
+     * 
+     * @param str
+     * @return
+     */
+    public static String toUnderScoreCase(String str) {
+        if (StringUtils.isEmpty(str)) {
+            return null;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        boolean upperCase = false;
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            boolean nextUpperCase = true;
+
+            if (i < (str.length() - 1)) {
+                nextUpperCase = Character.isUpperCase(str.charAt(i + 1));
+            }
+
+            if ((i > 0) && Character.isUpperCase(c)) {
+                if (!upperCase || !nextUpperCase) {
+                    sb.append(UNDERLINE_SEPARATOR);
+                }
+                upperCase = true;
+            } else {
+                upperCase = false;
+            }
+
+            sb.append(Character.toLowerCase(c));
+        }
+        return sb.toString().toUpperCase();
+    }
+
+    public static String toCamelCase(String str) {
+        if (StringUtils.isEmpty(str)) {
+            return null;
+        }
+        str = str.toLowerCase();
+
+        StringBuilder sb = new StringBuilder(str.length());
+        boolean upperCase = false;
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            if (c == UNDERLINE_SEPARATOR) {
+                upperCase = true;
+            } else if (upperCase) {
+                sb.append(Character.toUpperCase(c));
+                upperCase = false;
+            } else {
+                sb.append(c);
+            }
+        }
+
+        return sb.toString();
+    }
+
+    public static String toCapitalizeCamelCase(String str) {
+        if (StringUtils.isEmpty(str)) {
+            return null;
+        }
+        str = toCamelCase(str);
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 
 }

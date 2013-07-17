@@ -239,7 +239,7 @@
 		<javaSourceCompatibility>1.6</javaSourceCompatibility>
 		<javaTargetCompatibility>1.6</javaTargetCompatibility>
 		<currentJavaPath>${JAVA_HOME}</currentJavaPath>
-		<downloadSources>false</downloadSources>
+		<downloadSources>true</downloadSources>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<!-- Versions of plugins -->
@@ -259,7 +259,7 @@
 		<versionPluginInstall>2.3.1</versionPluginInstall>
 		<versionPluginEclipse>2.9</versionPluginEclipse>
 		<versionPluginjar>2.3.1</versionPluginjar>
-		<versionPluginCompile>2.3.2</versionPluginCompile>
+		<versionPluginCompile>3.1</versionPluginCompile>
 	</properties>
 	<scm>
 		<url>https://github.com/lcj325/lilac.git</url>

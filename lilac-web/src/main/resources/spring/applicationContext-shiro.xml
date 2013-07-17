@@ -27,7 +27,9 @@
 	<bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
 		<property name="cacheManager" ref="ehCacheManagerFactory" />
 	</bean>
-
+	
+	<bean id="custom" class="com.lilac.web.security.filter.CustomAuthenticationFilter" lazy-init="false"></bean>
+	
 	<!-- Shiro Filter -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean" depends-on="userRepository">
 		<property name="securityManager" ref="securityManager" />
@@ -35,9 +37,9 @@
 		<property name="successUrl" value="/" />
 		<property name="filterChainDefinitions">
 			<value>
-				/login = authc
+				/login = custom
 				/logout = logout
-				/static/** = anon
+				/assets/** = anon
 				/api/** = anon
 				/register/** = anon
 				/admin/** = roles[admin]
