@@ -1,134 +1,391 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
-		version="2.0">
-
+<?xml version="1.0" encoding="utf-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+	version="2.0">
 	<description>Lilac Framework JSP Form Tag Library</description>
 	<tlib-version>1.0</tlib-version>
 	<short-name>lilac</short-name>
-	
-		<tag>
-		<description>
-			Sets default HTML escape value for the current page.
-			Overrides a "defaultHtmlEscape" context-param in web.xml, if any.
-		</description>
+	<validator>
+		<description>Provides core validation features for JSTL tags.</description>
+		<validator-class>org.apache.taglibs.standard.tlv.JstlCoreTLV</validator-class>
+	</validator>
+	<tag>
+		<description>Catches any Throwable that occurs in its body and optionally exposes it.</description>
+		<name>catch</name>
+		<tag-class>org.apache.taglibs.standard.tag.common.core.CatchTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>Name of the exported scoped variable for the exception thrown from a nested action. The type of the scoped variable is the type of the exception thrown.</description>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<description>Simple conditional tag that establishes a context for mutually exclusive conditional operations, marked by &lt;when&gt; and &lt;otherwise&gt;</description>
+		<name>choose</name>
+		<tag-class>org.apache.taglibs.standard.tag.common.core.ChooseTag</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+	<tag>
+		<description>Simple conditional tag, which evalutes its body if the supplied condition is true and optionally exposes a Boolean scripting variable representing the evaluation of this condition</description>
+		<name>if</name>
+		<tag-class>org.apache.taglibs.standard.tag.rt.core.IfTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>The test condition that determines whether or not the body content should be processed.</description>
+			<name>test</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
+			<description>Name of the exported scoped variable for the resulting value of the test condition. The type of the scoped variable is Boolean.</description>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Scope for var.</description>
+			<name>scope</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<description>Retrieves an absolute or relative URL and exposes its contents to either the page, a String in 'var', or a Reader in 'varReader'.</description>
+		<name>import</name>
+		<tag-class>org.apache.taglibs.standard.tag.rt.core.ImportTag</tag-class>
+		<tei-class>org.apache.taglibs.standard.tei.ImportTEI</tei-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>The URL of the resource to import.</description>
+			<name>url</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Name of the exported scoped variable for the resource's content. The type of the scoped variable is String.</description>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Scope for var.</description>
+			<name>scope</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Name of the exported scoped variable for the resource's content. The type of the scoped variable is Reader.</description>
+			<name>varReader</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Name of the context when accessing a relative URL resource that belongs to a foreign context.</description>
+			<name>context</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Character encoding of the content at the input resource.</description>
+			<name>charEncoding</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<description>The basic iteration tag, accepting many different collection types and supporting subsetting and other functionality</description>
+		<name>forEach</name>
+		<tag-class>org.apache.taglibs.standard.tag.rt.core.ForEachTag</tag-class>
+		<tei-class>org.apache.taglibs.standard.tei.ForEachTEI</tei-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>Collection of items to iterate over.</description>
+			<name>items</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.Object</type>
+			<deferred-value>
+				<type>java.lang.Object</type>
+			</deferred-value>
+		</attribute>
+		<attribute>
+			<description>If items specified: Iteration begins at the item located at the specified index. First item of the collection has index 0. If items not specified: Iteration begins with index set at the value specified.</description>
+			<name>begin</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>int</type>
+		</attribute>
+		<attribute>
+			<description>If items specified: Iteration ends at the item located at the specified index (inclusive). If items not specified: Iteration ends when index reaches the value specified.</description>
+			<name>end</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>int</type>
+		</attribute>
+		<attribute>
+			<description>Iteration will only process every step items of the collection, starting with the first one.</description>
+			<name>step</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>int</type>
+		</attribute>
+		<attribute>
+			<description>Name of the exported scoped variable for the current item of the iteration. This scoped variable has nested visibility. Its type depends on the object of the underlying collection.</description>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Name of the exported scoped variable for the status of the iteration. Object exported is of type javax.servlet.jsp.jstl.core.LoopTagStatus. This scoped variable has nested visibility.</description>
+			<name>varStatus</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<description>Iterates over tokens, separated by the supplied delimeters</description>
+		<name>forTokens</name>
+		<tag-class>org.apache.taglibs.standard.tag.rt.core.ForTokensTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>String of tokens to iterate over.</description>
+			<name>items</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+			<deferred-value>
+				<type>java.lang.String</type>
+			</deferred-value>
+		</attribute>
+		<attribute>
+			<description>The set of delimiters (the characters that separate the tokens in the string).</description>
+			<name>delims</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description>Iteration begins at the token located at the specified index. First token has index 0.</description>
+			<name>begin</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>int</type>
+		</attribute>
+		<attribute>
+			<description>Iteration ends at the token located at the specified index (inclusive).</description>
+			<name>end</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>int</type>
+		</attribute>
+		<attribute>
+			<description>Iteration will only process every step tokens of the string, starting with the first one.</description>
+			<name>step</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>int</type>
+		</attribute>
+		<attribute>
+			<description>Name of the exported scoped variable for the current item of the iteration. This scoped variable has nested visibility.</description>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Name of the exported scoped variable for the status of the iteration. Object exported is of type javax.servlet.jsp.jstl.core.LoopTag Status. This scoped variable has nested visibility.</description>
+			<name>varStatus</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<description>Like &lt;%= ... &gt;, but for expressions.</description>
+		<name>out</name>
+		<tag-class>org.apache.taglibs.standard.tag.rt.core.OutTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>Expression to be evaluated.</description>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Default value if the resulting value is null.</description>
+			<name>default</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Determines whether characters &lt;,&gt;,&amp;,'," in the resulting string should be converted to their corresponding character entity codes. Default value is true.</description>
+			<name>escapeXml</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<description>Subtag of &lt;choose&gt; that follows &lt;when&gt; tags and runs only if all of the prior conditions evaluated to 'false'</description>
+		<name>otherwise</name>
+		<tag-class>org.apache.taglibs.standard.tag.common.core.OtherwiseTag</tag-class>
+		<body-content>JSP</body-content>
+	</tag>
+	<tag>
+		<description>Adds a parameter to a containing 'import' tag's URL.</description>
+		<name>param</name>
+		<tag-class>org.apache.taglibs.standard.tag.rt.core.ParamTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>Name of the query string parameter.</description>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Value of the parameter.</description>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<description>Redirects to a new URL.</description>
+		<name>redirect</name>
+		<tag-class>org.apache.taglibs.standard.tag.rt.core.RedirectTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>The URL of the resource to redirect to.</description>
+			<name>url</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Name of the context when redirecting to a relative URL resource that belongs to a foreign context.</description>
+			<name>context</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<description>Removes a scoped variable (from a particular scope, if specified).</description>
+		<name>remove</name>
+		<tag-class>org.apache.taglibs.standard.tag.common.core.RemoveTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description>Name of the scoped variable to be removed.</description>
+			<name>var</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Scope for var.</description>
+			<name>scope</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<description>Sets the result of an expression evaluation in a 'scope'</description>
+		<name>set</name>
+		<tag-class>org.apache.taglibs.standard.tag.rt.core.SetTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>Name of the exported scoped variable to hold the value specified in the action. The type of the scoped variable is whatever type the value expression evaluates to.</description>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Expression to be evaluated.</description>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<deferred-value>
+				<type>java.lang.Object</type>
+			</deferred-value>
+		</attribute>
+		<attribute>
+			<description>Target object whose property will be set. Must evaluate to a JavaBeans object with setter property property, or to a java.util.Map object.</description>
+			<name>target</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Name of the property to be set in the target object.</description>
+			<name>property</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Scope for var.</description>
+			<name>scope</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<description>Creates a URL with optional query parameters.</description>
+		<name>url</name>
+		<tag-class>org.apache.taglibs.standard.tag.rt.core.UrlTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>Name of the exported scoped variable for the processed url. The type of the scoped variable is String.</description>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Scope for var.</description>
+			<name>scope</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>URL to be processed.</description>
+			<name>value</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Name of the context when specifying a relative URL resource that belongs to a foreign context.</description>
+			<name>context</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<description>Subtag of &lt;choose&gt; that includes its body if its condition evalutes to 'true'</description>
+		<name>when</name>
+		<tag-class>org.apache.taglibs.standard.tag.rt.core.WhenTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>The test condition that determines whether or not the body content should be processed.</description>
+			<name>test</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+		</attribute>
+	</tag>
+	<tag>
+		<description>Sets default HTML escape value for the current page. Overrides a "defaultHtmlEscape" context-param in web.xml, if any.</description>
 		<name>htmlEscape</name>
 		<tag-class>org.springframework.web.servlet.tags.HtmlEscapeTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
-			<description>Set the default value for HTML escaping, to be put
-				into the current PageContext.</description>
+			<description>Set the default value for HTML escaping, to be put into the current PageContext.</description>
 			<name>defaultHtmlEscape</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
-
 	<tag>
-		<description>
-			Escapes its enclosed body content, applying HTML escaping and/or JavaScript escaping.
-			The HTML escaping flag participates in a page-wide or application-wide setting
-			(i.e. by HtmlEscapeTag or a "defaultHtmlEscape" context-param in web.xml).
-		</description>
+		<description>Escapes its enclosed body content, applying HTML escaping and/or JavaScript escaping. The HTML escaping flag participates in a page-wide or application-wide setting (i.e. by HtmlEscapeTag or a "defaultHtmlEscape" context-param in web.xml).</description>
 		<name>escapeBody</name>
 		<tag-class>org.springframework.web.servlet.tags.EscapeBodyTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
-			<description>Set HTML escaping for this tag, as boolean value. Overrides the
-			default HTML escaping setting for the current page.</description>
-			<name>htmlEscape</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<description>Set JavaScript escaping for this tag, as boolean value.
-			Default is false.</description>
-			<name>javaScriptEscape</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-	</tag>
-
-	<tag>
-		<description>
-			Retrieves the message with the given code, or text if code isn't resolvable.
-			The HTML escaping flag participates in a page-wide or application-wide setting
-			(i.e. by HtmlEscapeTag or a "defaultHtmlEscape" context-param in web.xml).
-		</description>
-		<name>message</name>
-		<tag-class>com.lilac.web.tags.MessageTag</tag-class>
-		<body-content>JSP</body-content>
-		<attribute>
-			<description>A MessageSourceResolvable argument (direct or through JSP EL).
-				Fits nicely when used in conjunction with Spring's own validation error
-				classes which all implement the MessageSourceResolvable interface. For
-				example, this allows you to iterate over all of the errors in a form,
-				passing each error (using a runtime expression) as the value of this
-				'message' attribute, thus effecting the easy display of such error
-				messages.</description>
-			<name>message</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<description>The code (key) to use when looking up the message.
-			If code is not provided, the text attribute will be used.</description>
-			<name>code</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<description>Set optional message arguments for this tag, as a
-			(comma-)delimited String (each String argument can contain JSP EL),
-			an Object array (used as argument array), or a single Object (used
-			as single argument).</description>
-			<name>arguments</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<description>The separator character to be used for splitting the
-			arguments string value; defaults to a 'comma' (',').</description>
-			<name>argumentSeparator</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<description>Default text to output when a message for the given code
-			could not be found. If both text and code are not set, the tag will
-			output null.</description>
-			<name>defaultMsg</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<description>Default text to output when a message for the given code
-			could not be found. If both text and code are not set, the tag will
-			output null.</description>
-			<name>text</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<description>The string to use when binding the result to the page,
-			request, session or application scope. If not specified, the result
-			gets outputted to the writer (i.e. typically directly to the JSP).</description>
-			<name>var</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<description>The scope to use when exporting the result to a variable.
-			This attribute is only used when var is also set. Possible values are
-			page, request, session and application.</description>
-			<name>scope</name>
-			<required>false</required>
-			<rtexprvalue>true</rtexprvalue>
-		</attribute>
-		<attribute>
-			<description>Set HTML escaping for this tag, as boolean value.
-			Overrides the default HTML escaping setting for the current page.</description>
+			<description>Set HTML escaping for this tag, as boolean value. Overrides the default HTML escaping setting for the current page.</description>
 			<name>htmlEscape</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -140,13 +397,74 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
-
 	<tag>
-		<description>
-			Retrieves the theme message with the given code, or text if code isn't resolvable.
-			The HTML escaping flag participates in a page-wide or application-wide setting
-			(i.e. by HtmlEscapeTag or a "defaultHtmlEscape" context-param in web.xml).
-		</description>
+		<description>Retrieves the message with the given code, or text if code isn't resolvable. The HTML escaping flag participates in a page-wide or application-wide setting (i.e. by HtmlEscapeTag or a "defaultHtmlEscape" context-param in web.xml).</description>
+		<name>message</name>
+		<tag-class>com.lilac.web.tags.MessageTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>A MessageSourceResolvable argument (direct or through JSP EL). Fits nicely when used in conjunction with Spring's own validation error classes which all implement the MessageSourceResolvable interface. For example, this allows you to iterate over all of the errors in a form, passing each error (using a runtime expression) as the value of this 'message' attribute, thus effecting the easy display of such error messages.</description>
+			<name>message</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>The code (key) to use when looking up the message. If code is not provided, the text attribute will be used.</description>
+			<name>code</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Set optional message arguments for this tag, as a (comma-)delimited String (each String argument can contain JSP EL), an Object array (used as argument array), or a single Object (used as single argument).</description>
+			<name>arguments</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>The separator character to be used for splitting the arguments string value; defaults to a 'comma' (',').</description>
+			<name>argumentSeparator</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Default text to output when a message for the given code could not be found. If both text and code are not set, the tag will output null.</description>
+			<name>defaultMsg</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Default text to output when a message for the given code could not be found. If both text and code are not set, the tag will output null.</description>
+			<name>text</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>The string to use when binding the result to the page, request, session or application scope. If not specified, the result gets outputted to the writer (i.e. typically directly to the JSP).</description>
+			<name>var</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>The scope to use when exporting the result to a variable. This attribute is only used when var is also set. Possible values are page, request, session and application.</description>
+			<name>scope</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Set HTML escaping for this tag, as boolean value. Overrides the default HTML escaping setting for the current page.</description>
+			<name>htmlEscape</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Set JavaScript escaping for this tag, as boolean value. Default is false.</description>
+			<name>javaScriptEscape</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<description>Retrieves the theme message with the given code, or text if code isn't resolvable. The HTML escaping flag participates in a page-wide or application-wide setting (i.e. by HtmlEscapeTag or a "defaultHtmlEscape" context-param in web.xml).</description>
 		<name>theme</name>
 		<tag-class>org.springframework.web.servlet.tags.ThemeTag</tag-class>
 		<body-content>JSP</body-content>
@@ -157,55 +475,43 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>The code (key) to use when looking up the message.
-			If code is not provided, the text attribute will be used.</description>
+			<description>The code (key) to use when looking up the message. If code is not provided, the text attribute will be used.</description>
 			<name>code</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>Set optional message arguments for this tag, as a
-			(comma-)delimited String (each String argument can contain JSP EL),
-			an Object array (used as argument array), or a single Object (used
-			as single argument).</description>
+			<description>Set optional message arguments for this tag, as a (comma-)delimited String (each String argument can contain JSP EL), an Object array (used as argument array), or a single Object (used as single argument).</description>
 			<name>arguments</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>The separator character to be used for splitting the
-			arguments string value; defaults to a 'comma' (',').</description>
+			<description>The separator character to be used for splitting the arguments string value; defaults to a 'comma' (',').</description>
 			<name>argumentSeparator</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>Default text to output when a message for the given code
-			could not be found. If both text and code are not set, the tag will
-			output null.</description>
+			<description>Default text to output when a message for the given code could not be found. If both text and code are not set, the tag will output null.</description>
 			<name>text</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>The string to use when binding the result to the page,
-			request, session or application scope. If not specified, the result
-			gets outputted to the writer (i.e. typically directly to the JSP).</description>
+			<description>The string to use when binding the result to the page, request, session or application scope. If not specified, the result gets outputted to the writer (i.e. typically directly to the JSP).</description>
 			<name>var</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>The scope to use when exporting the result to a variable.
-			This attribute is only used when var is also set. Possible values are
-			page, request, session and application.</description>
+			<description>The scope to use when exporting the result to a variable. This attribute is only used when var is also set. Possible values are page, request, session and application.</description>
 			<name>scope</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>Set HTML escaping for this tag, as boolean value.
-			Overrides the default HTML escaping setting for the current page.</description>
+			<description>Set HTML escaping for this tag, as boolean value. Overrides the default HTML escaping setting for the current page.</description>
 			<name>htmlEscape</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -217,13 +523,8 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
-
 	<tag>
-		<description>
-			Provides Errors instance in case of bind errors.
-			The HTML escaping flag participates in a page-wide or application-wide setting
-			(i.e. by HtmlEscapeTag or a "defaultHtmlEscape" context-param in web.xml).
-		</description>
+		<description>Provides Errors instance in case of bind errors. The HTML escaping flag participates in a page-wide or application-wide setting (i.e. by HtmlEscapeTag or a "defaultHtmlEscape" context-param in web.xml).</description>
 		<name>hasBindErrors</name>
 		<tag-class>org.springframework.web.servlet.tags.BindErrorsTag</tag-class>
 		<body-content>JSP</body-content>
@@ -232,26 +533,20 @@
 			<variable-class>org.springframework.validation.Errors</variable-class>
 		</variable>
 		<attribute>
-			<description>The name of the bean in the request, that needs to be
-			inspected for errors. If errors are available for this bean, they
-			will be bound under the 'errors' key.</description>
+			<description>The name of the bean in the request, that needs to be inspected for errors. If errors are available for this bean, they will be bound under the 'errors' key.</description>
 			<name>name</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>Set HTML escaping for this tag, as boolean value.
-			Overrides the default HTML escaping setting for the current page.</description>
+			<description>Set HTML escaping for this tag, as boolean value. Overrides the default HTML escaping setting for the current page.</description>
 			<name>htmlEscape</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
-
 	<tag>
-		<description>
-			Sets a nested path to be used by the bind tag's path.
-		</description>
+		<description>Sets a nested path to be used by the bind tag's path.</description>
 		<name>nestedPath</name>
 		<tag-class>org.springframework.web.servlet.tags.NestedPathTag</tag-class>
 		<body-content>JSP</body-content>
@@ -260,21 +555,14 @@
 			<variable-class>java.lang.String</variable-class>
 		</variable>
 		<attribute>
-			<description>Set the path that this tag should apply. E.g. 'customer'
-			to allow bind paths like 'address.street' rather than
-			'customer.address.street'.</description>
+			<description>Set the path that this tag should apply. E.g. 'customer' to allow bind paths like 'address.street' rather than 'customer.address.street'.</description>
 			<name>path</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
-
 	<tag>
-		<description>
-			Provides BindStatus object for the given bind path.
-			The HTML escaping flag participates in a page-wide or application-wide setting
-			(i.e. by HtmlEscapeTag or a "defaultHtmlEscape" context-param in web.xml).
-		</description>
+		<description>Provides BindStatus object for the given bind path. The HTML escaping flag participates in a page-wide or application-wide setting (i.e. by HtmlEscapeTag or a "defaultHtmlEscape" context-param in web.xml).</description>
 		<name>bind</name>
 		<tag-class>org.springframework.web.servlet.tags.BindTag</tag-class>
 		<body-content>JSP</body-content>
@@ -283,10 +571,7 @@
 			<variable-class>org.springframework.web.servlet.support.BindStatus</variable-class>
 		</variable>
 		<attribute>
-			<description>The path to the bean or bean property to bind status
-			information for. For instance account.name, company.address.zipCode
-			or just employee. The status object will exported to the page scope,
-			specifically for this bean or bean property</description>
+			<description>The path to the bean or bean property to bind status information for. For instance account.name, company.address.zipCode or just employee. The status object will exported to the page scope, specifically for this bean or bean property</description>
 			<name>path</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -298,75 +583,55 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>Set HTML escaping for this tag, as boolean value. Overrides
-			the default HTML escaping setting for the current page.</description>
+			<description>Set HTML escaping for this tag, as boolean value. Overrides the default HTML escaping setting for the current page.</description>
 			<name>htmlEscape</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
-
 	<tag>
-		<description>
-			Provides transformation of variables to Strings, using an appropriate
-			custom PropertyEditor from BindTag (can only be used inside BindTag).
-			The HTML escaping flag participates in a page-wide or application-wide setting
-			(i.e. by HtmlEscapeTag or a 'defaultHtmlEscape' context-param in web.xml).
-		</description>
+		<description>Provides transformation of variables to Strings, using an appropriate custom PropertyEditor from BindTag (can only be used inside BindTag). The HTML escaping flag participates in a page-wide or application-wide setting (i.e. by HtmlEscapeTag or a 'defaultHtmlEscape' context-param in web.xml).</description>
 		<name>transform</name>
 		<tag-class>org.springframework.web.servlet.tags.TransformTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
-			<description>The value to transform. This is the actual object you want
-			to have transformed (for instance a Date). Using the PropertyEditor that
-			is currently in use by the 'spring:bind' tag.</description>
+			<description>The value to transform. This is the actual object you want to have transformed (for instance a Date). Using the PropertyEditor that is currently in use by the 'spring:bind' tag.</description>
 			<name>value</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>The string to use when binding the result to the page,
-			request, session or application scope. If not specified, the result gets
-			outputted to the writer (i.e. typically directly to the JSP).</description>
+			<description>The string to use when binding the result to the page, request, session or application scope. If not specified, the result gets outputted to the writer (i.e. typically directly to the JSP).</description>
 			<name>var</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>The scope to use when exported the result to a variable.
-			This attribute is only used when var is also set. Possible values are
-			page, request, session and application.</description>
+			<description>The scope to use when exported the result to a variable. This attribute is only used when var is also set. Possible values are page, request, session and application.</description>
 			<name>scope</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>Set HTML escaping for this tag, as boolean value. Overrides
-			the default HTML escaping setting for the current page.</description>
+			<description>Set HTML escaping for this tag, as boolean value. Overrides the default HTML escaping setting for the current page.</description>
 			<name>htmlEscape</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
-
 	<tag>
-		<description>URL tag based on the JSTL c:url tag.  This variant is fully 
-		backwards compatible with the standard tag.  Enhancements include support 
-		for URL template parameters.</description>
+		<description>URL tag based on the JSTL c:url tag. This variant is fully backwards compatible with the standard tag. Enhancements include support for URL template parameters.</description>
 		<name>url</name>
 		<tag-class>org.springframework.web.servlet.tags.UrlTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
-			<description>The URL to build.  This value can include template place holders 
-			that are replaced with the URL encoded value of the named parameter.  Parameters 
-			must be defined using the param tag inside the body of this tag.</description>
+			<description>The URL to build. This value can include template place holders that are replaced with the URL encoded value of the named parameter. Parameters must be defined using the param tag inside the body of this tag.</description>
 			<name>value</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>Specifies a remote application context path.  The default is the 
-			current application context path.</description>
+			<description>Specifies a remote application context path. The default is the current application context path.</description>
 			<name>context</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -378,32 +643,26 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>The scope for the var.  'application', 'session', 'request' and 
-			'page' scopes are supported.  Defaults to page scope.  This attribute has no 
-			effect unless the var attribute is also defined.</description>
+			<description>The scope for the var. 'application', 'session', 'request' and 'page' scopes are supported. Defaults to page scope. This attribute has no effect unless the var attribute is also defined.</description>
 			<name>scope</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>Set HTML escaping for this tag, as a boolean value. Overrides the
-			default HTML escaping setting for the current page.</description>
+			<description>Set HTML escaping for this tag, as a boolean value. Overrides the default HTML escaping setting for the current page.</description>
 			<name>htmlEscape</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>Set JavaScript escaping for this tag, as a boolean value.
-			Default is false.</description>
+			<description>Set JavaScript escaping for this tag, as a boolean value. Default is false.</description>
 			<name>javaScriptEscape</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
-
 	<tag>
-		<description>Parameter tag based on the JSTL c:param tag.  The sole purpose is to 
-		support params inside the spring:url tag.</description>
+		<description>Parameter tag based on the JSTL c:param tag. The sole purpose is to support params inside the spring:url tag.</description>
 		<name>param</name>
 		<tag-class>org.springframework.web.servlet.tags.ParamTag</tag-class>
 		<body-content>JSP</body-content>
@@ -420,7 +679,6 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
-
 	<tag>
 		<description>Evaluates a Spring expression (SpEL) and either prints the result or assigns it to a variable.</description>
 		<name>eval</name>
@@ -439,22 +697,19 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>The scope for the var.  'application', 'session', 'request' and 
-			'page' scopes are supported.  Defaults to page scope.  This attribute has no 
-			effect unless the var attribute is also defined.</description>
+			<description>The scope for the var. 'application', 'session', 'request' and 'page' scopes are supported. Defaults to page scope. This attribute has no effect unless the var attribute is also defined.</description>
 			<name>scope</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>Set HTML escaping for this tag, as a boolean value. Overrides the
-			default HTML escaping setting for the current page.</description>
+			<description>Set HTML escaping for this tag, as a boolean value. Overrides the default HTML escaping setting for the current page.</description>
 			<name>htmlEscape</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>Set JavaScript escaping for this tag, as a boolean value.  Default is false.</description>
+			<description>Set JavaScript escaping for this tag, as a boolean value. Default is false.</description>
 			<name>javaScriptEscape</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -574,15 +829,13 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>Name of the model attribute under which the form object is exposed.
-				Defaults to 'command'.</description>
+			<description>Name of the model attribute under which the form object is exposed. Defaults to 'command'.</description>
 			<name>modelAttribute</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>Name of the model attribute under which the form object is exposed.
-				Defaults to 'command'.</description>
+			<description>Name of the model attribute under which the form object is exposed. Defaults to 'command'.</description>
 			<name>commandName</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -649,7 +902,6 @@
 		</attribute>
 		<dynamic-attributes>true</dynamic-attributes>
 	</tag>
-
 	<tag>
 		<description>Renders an HTML 'input' tag with type 'text' using the bound value.</description>
 		<name>input</name>
@@ -843,7 +1095,6 @@
 		</attribute>
 		<dynamic-attributes>true</dynamic-attributes>
 	</tag>
-
 	<tag>
 		<description>Renders an HTML 'input' tag with type 'password' using the bound value.</description>
 		<name>password</name>
@@ -1043,7 +1294,6 @@
 		</attribute>
 		<dynamic-attributes>true</dynamic-attributes>
 	</tag>
-
 	<tag>
 		<description>Renders an HTML 'input' tag with type 'hidden' using the bound value.</description>
 		<name>hidden</name>
@@ -1110,11 +1360,11 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-		<description>HTML Optional Attribute. Setting the value of this attribute to 'true' (without the quotes) will disable the HTML element.</description>
+			<description>HTML Optional Attribute. Setting the value of this attribute to 'true' (without the quotes) will disable the HTML element.</description>
 			<name>disabled</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
-			</attribute>
+		</attribute>
 		<attribute>
 			<description>HTML Event Attribute</description>
 			<name>onclick</name>
@@ -1177,7 +1427,6 @@
 		</attribute>
 		<dynamic-attributes>true</dynamic-attributes>
 	</tag>
-
 	<tag>
 		<description>Renders an HTML 'select' element. Supports databinding to the selected option.</description>
 		<name>select</name>
@@ -1365,7 +1614,6 @@
 		</attribute>
 		<dynamic-attributes>true</dynamic-attributes>
 	</tag>
-
 	<tag>
 		<description>Renders a single HTML 'option'. Sets 'selected' as appropriate based on bound value.</description>
 		<name>option</name>
@@ -1377,8 +1625,7 @@
 			<variable-class>java.lang.Object</variable-class>
 		</variable>
 		<variable>
-			<description>The String representation of thr value bound to the 'value' attribute, taking into consideration
-				any PropertyEditor associated with the enclosing 'select' tag.</description>
+			<description>The String representation of thr value bound to the 'value' attribute, taking into consideration any PropertyEditor associated with the enclosing 'select' tag.</description>
 			<name-given>displayValue</name-given>
 			<variable-class>java.lang.String</variable-class>
 		</variable>
@@ -1516,7 +1763,6 @@
 		</attribute>
 		<dynamic-attributes>true</dynamic-attributes>
 	</tag>
-
 	<tag>
 		<description>Renders a list of HTML 'option' tags. Sets 'selected' as appropriate based on bound value.</description>
 		<name>options</name>
@@ -1662,7 +1908,6 @@
 		</attribute>
 		<dynamic-attributes>true</dynamic-attributes>
 	</tag>
-
 	<tag>
 		<description>Renders an HTML 'input' tag with type 'radio'.</description>
 		<name>radiobutton</name>
@@ -1832,7 +2077,6 @@
 		</attribute>
 		<dynamic-attributes>true</dynamic-attributes>
 	</tag>
-
 	<tag>
 		<description>Renders multiple HTML 'input' tags with type 'radio'.</description>
 		<name>radiobuttons</name>
@@ -2020,7 +2264,6 @@
 		</attribute>
 		<dynamic-attributes>true</dynamic-attributes>
 	</tag>
-
 	<tag>
 		<description>Renders an HTML 'input' tag with type 'checkbox'.</description>
 		<name>checkbox</name>
@@ -2190,7 +2433,6 @@
 		</attribute>
 		<dynamic-attributes>true</dynamic-attributes>
 	</tag>
-
 	<tag>
 		<description>Renders multiple HTML 'input' tags with type 'checkbox'.</description>
 		<name>checkboxes</name>
@@ -2378,7 +2620,6 @@
 		</attribute>
 		<dynamic-attributes>true</dynamic-attributes>
 	</tag>
-
 	<tag>
 		<description>Renders an HTML 'textarea'.</description>
 		<name>textarea</name>
@@ -2560,7 +2801,6 @@
 		</attribute>
 		<dynamic-attributes>true</dynamic-attributes>
 	</tag>
-
 	<tag>
 		<description>Renders field errors in an HTML 'span' tag.</description>
 		<name>errors</name>
@@ -2698,7 +2938,6 @@
 		</attribute>
 		<dynamic-attributes>true</dynamic-attributes>
 	</tag>
-
 	<tag>
 		<description>Renders a form field label in an HTML 'label' tag.</description>
 		<name>label</name>
@@ -2711,8 +2950,7 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
-			<description>The code (key) to use when looking up the message.
-			If code is not provided, the text attribute will be used.</description>
+			<description>The code (key) to use when looking up the message. If code is not provided, the text attribute will be used.</description>
 			<name>code</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>
@@ -2845,24 +3083,23 @@
 		</attribute>
 		<dynamic-attributes>true</dynamic-attributes>
 	</tag>
-
 	<tag>
 		<description>Renders an HTML 'button' tag.</description>
 		<name>button</name>
 		<tag-class>org.springframework.web.servlet.tags.form.ButtonTag</tag-class>
 		<body-content>JSP</body-content>
-        <attribute>
-            <description>HTML Standard Attribute</description>
-            <name>id</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <description>The name attribute for the HTML button tag</description>
-            <name>name</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
+		<attribute>
+			<description>HTML Standard Attribute</description>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>The name attribute for the HTML button tag</description>
+			<name>name</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
 		<attribute>
 			<description>The value attribute for the HTML button tag</description>
 			<name>value</name>
@@ -2877,5 +3114,4 @@
 		</attribute>
 		<dynamic-attributes>true</dynamic-attributes>
 	</tag>
-	
 </taglib>

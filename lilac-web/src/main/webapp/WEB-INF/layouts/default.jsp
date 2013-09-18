@@ -1,8 +1,10 @@
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="sitemesh" uri="http://www.opensymphony.com/sitemesh/decorator" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="lilac" uri="/WEB-INF/tlds/lilac.tld"%>
-<c:set var="ctx" value="${pageContext.request.contextPath}" />
+<lilac:set var="ctx" value="${pageContext.request.contextPath}" />
+<lilac:set var="version" value="1.0.0"></lilac:set>
+<lilac:set var="timestamp" value="<%=new Date().getTime()%>"></lilac:set>
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -19,13 +21,15 @@
 <link href="${ctx}/assets/js/lib/bootstrap/2.3.2/css/bootstrap-responsive.css" type="text/css" rel="stylesheet" />
 <link href="${ctx}/assets/js/lib/jquery.cleditor/1.4.3/jquery.cleditor.css" type="text/css" rel="stylesheet" />
 <link href="${ctx}/assets/js/lib/jquery-ui/1.10.3/css/ui-lightness/jquery-ui.css" type="text/css" rel="stylesheet" />
-<link href="${ctx}/assets/js/lib/jquery.uniform/2.1.0/themes/default/css/uniform.css" type="text/css" rel="stylesheet" />
+<link href="${ctx}/assets/js/lib/jquery.uniform/2.1.0/themes/default/css/uniform.default.css" type="text/css" rel="stylesheet" />
 <link href="${ctx}/assets/js/lib/jquery.chosen/0.11.1/css/chosen.css" type="text/css" rel="stylesheet" />
 <link href="${ctx}/assets/js/lib/jquery.colorbox/1.4.26/colorbox.css" type="text/css" rel="stylesheet" />
 <link href="${ctx}/assets/css/lilac.css?v=${version}" type="text/css" rel="stylesheet" />
 <link href="${ctx}/assets/js/lib/jquery.fullcalendar/1.6.1/fullcalendar.css" type="text/css" rel="stylesheet" />
 <link href="${ctx}/assets/js/lib/jquery.fullcalendar/1.6.1/fullcalendar.print.css" type="text/css" rel="stylesheet" />
+<link href="${ctx}/assets/js/lib/bootstrap-modal/2.1/css/bootstrap-modal.css" type="text/css" rel="stylesheet" />
 <script src="${ctx}/assets/js/lib/jquery/1.10.2/jquery.js" type="text/javascript"></script>
+
 <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -57,7 +61,9 @@
 <script src="${ctx}/assets/js/lib/jquery.flot/0.8.1/jquery.flot.pie.js" type="text/javascript"></script>
 <script src="${ctx}/assets/js/lib/jquery.flot/0.8.1/jquery.flot.stack.js" type="text/javascript"></script>
 <script src="${ctx}/assets/js/lib/jquery.flot/0.8.1/jquery.flot.resize.js" type="text/javascript"></script>
-<script src="${ctx}/assets/js/common/lilac.js?v=${version}" type="text/javascript"></script>
+<script src="${ctx}/assets/js/lib/bootstrap-modal/2.1/js/bootstrap-modal.js" type="text/javascript"></script>
+<script src="${ctx}/assets/js/lib/bootstrap-modal/2.1/js/bootstrap-modalmanager.js" type="text/javascript"></script>
+<script src="${ctx}/assets/js/common/lilac.js?v=${empty version ? timestamp :version}" type="text/javascript"></script>
 <script type="text/javascript">
 jQuery.extend(jQuery.validator.messages, {
 	required: "<lilac:message code='WARN_FIELD_REQUIRED' defaultMsg='This field is required.'/>",

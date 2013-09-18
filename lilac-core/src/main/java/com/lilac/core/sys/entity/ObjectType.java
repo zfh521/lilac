@@ -6,6 +6,8 @@ package com.lilac.core.sys.entity;
 
 import javax.persistence.Entity;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.lilac.core.entity.support.UUIDEntity;
 
 /**
@@ -19,11 +21,29 @@ public class ObjectType extends UUIDEntity {
      * 
      */
     private static final long serialVersionUID = -7754934275159150169L;
+
+    @NotEmpty
+    private String            objectTypeId;
+    @NotEmpty
     private String            className;
     private String            description;
     private boolean           isDeleteState;
     private boolean           isLog;
     private boolean           isCache;
+
+    /**
+     * @return the objectTypeId
+     */
+    public String getObjectTypeId() {
+        return objectTypeId;
+    }
+
+    /**
+     * @param objectTypeId the objectTypeId to set
+     */
+    public void setObjectTypeId(String objectTypeId) {
+        this.objectTypeId = objectTypeId;
+    }
 
     /**
      * @return the description
@@ -56,7 +76,7 @@ public class ObjectType extends UUIDEntity {
     /**
      * @return the isDeleteState
      */
-    public boolean isDeleteState() {
+    public boolean getIsDeleteState() {
         return isDeleteState;
     }
 
@@ -70,7 +90,7 @@ public class ObjectType extends UUIDEntity {
     /**
      * @return the isLog
      */
-    public boolean isLog() {
+    public boolean getIsLog() {
         return isLog;
     }
 
@@ -84,7 +104,7 @@ public class ObjectType extends UUIDEntity {
     /**
      * @return the isCache
      */
-    public boolean isCache() {
+    public boolean getIsCache() {
         return isCache;
     }
 

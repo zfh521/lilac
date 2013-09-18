@@ -5,6 +5,7 @@
 package com.lilac.core.sys.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lilac.core.service.AbstractService;
 import com.lilac.core.sys.entity.ObjectType;
@@ -15,6 +16,7 @@ import com.lilac.core.sys.repository.ObjectTypeRepository;
  * @since 2013-5-16
  */
 @Service
+@Transactional
 public class ObjectTypeService extends AbstractService<ObjectTypeRepository, ObjectType, String> {
 
     /**

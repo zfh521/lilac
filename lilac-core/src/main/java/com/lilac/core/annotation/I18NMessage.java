@@ -19,7 +19,7 @@ public @interface I18NMessage {
 
     public String code();
 
-    public String msg() default "";
+    public String defaultMsg() default "";
 
     public String locale() default "zh_CN";
 

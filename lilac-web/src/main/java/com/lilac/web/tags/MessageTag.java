@@ -55,7 +55,7 @@ import com.lilac.core.util.StringUtils;
  * @see HtmlEscapeTag#setDefaultHtmlEscape
  * @see org.springframework.web.util.WebUtils#HTML_ESCAPE_CONTEXT_PARAM
  */
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "deprecation" })
 public class MessageTag extends HtmlEscapingAwareTag {
 
     /**

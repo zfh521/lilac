@@ -11,6 +11,7 @@ import java.lang.reflect.Type;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import com.lilac.core.entity.IdEntity;
@@ -20,6 +21,7 @@ import com.lilac.core.repository.BaseRepository;
  * @author Jimmy Leung
  * @since 2013-5-16
  */
+@Transactional
 public abstract class AbstractService<R extends BaseRepository<T, ID>, T extends IdEntity<ID>, ID extends Serializable> implements Service<T, ID> {
 
     protected Logger   log = LoggerFactory.getLogger(getClass());

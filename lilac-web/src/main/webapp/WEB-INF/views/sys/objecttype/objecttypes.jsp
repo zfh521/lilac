@@ -49,7 +49,7 @@
 						<button type="submit" class="btn">
 							<i class="icon-search"></i> Search
 						</button>
-						<a class="btn btn-primary" href="${ctx}/sys/objectType">
+						<a class="btn btn-primary" href="${ctx}/sys/objecttypes/new">
 							<i class="icon-plus icon-white"></i> Add
 						</a>
 					</div>

@@ -5,9 +5,11 @@
 package com.lilac.core.security.entity;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.envers.Audited;
 
+import com.lilac.core.annotation.I18NMessage;
 import com.lilac.core.entity.BaseEntity;
 
 /**
@@ -22,6 +24,8 @@ public class UserInfo extends BaseEntity {
      * 
      */
     private static final long serialVersionUID = 7700972394252108235L;
+    @I18NMessage(code = "LBL_USER_NAME", defaultMsg = "用户名")
+    @NotNull
     private String            userName;
     private String            instanceDesc;
     private String            plainPassword;

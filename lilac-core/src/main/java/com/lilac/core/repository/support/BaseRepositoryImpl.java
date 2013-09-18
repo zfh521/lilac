@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.JpaEntityInformationSupport;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lilac.core.entity.IEntity;
 import com.lilac.core.entity.support.EntityStatus;
@@ -22,6 +23,7 @@ import com.lilac.core.repository.BaseRepository;
  * @author Jimmy Leung
  * @since 2013-5-10
  */
+@Transactional(readOnly = true)
 public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements BaseRepository<T, ID> {
 
     protected final Logger      log = LoggerFactory.getLogger(getClass());
@@ -47,6 +49,7 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
      * @see org.springframework.data.jpa.repository.support.SimpleJpaRepository#save(java.lang.Object)
      */
     @Override
+    @Transactional
     public <S extends T> S save(S entity) {
         return super.save(entity);
     }
@@ -56,6 +59,7 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
      * @see org.springframework.data.jpa.repository.support.SimpleJpaRepository#delete(java.lang.Object)
      */
     @Override
+    @Transactional
     public void delete(T entity) {
         if (entity instanceof IEntity<?>) {
             ((IEntity<?>) entity).setEntityStatus(EntityStatus.DELETED);

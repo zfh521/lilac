@@ -7,6 +7,13 @@ package com.lilac.core.security.service;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -78,4 +85,14 @@ public class UserServiceTest extends AbstractTransactionalTests {
         assertEquals("SYSTEM", user.getId());
     }
 
+    @Test
+    public void testUserValidate() {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        UserInfo user = new UserInfo();
+        Set<ConstraintViolation<UserInfo>> constraintViolations = validator.validate(user);
+        for (ConstraintViolation<UserInfo> constraintViolation : constraintViolations) {
+            log.error(constraintViolation.getMessage());
+        }
+    }
 }

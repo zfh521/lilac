@@ -701,3 +701,21 @@ $.extend( $.fn.dataTableExt.oPagination, {
 		}
 	}
 });
+(function($){
+	$.lilac = {
+		domin:'lilac.com',
+		version:'1.0.0',
+		loadMask:function(options) {
+				var maskdiv=$("<div></div>");
+				maskdiv.appendTo("body");
+				var defaults = {
+					loading: true,
+					modalOverflow: true,
+					clickHide:false,
+					spinner: '<div class="loading-spinner" style="width: 400px; margin-left: -200px;"></div>'
+				};
+				var setings = $.extend({},defaults,options);
+				maskdiv.modal(setings);
+		}
+	};
+})(jQuery);
