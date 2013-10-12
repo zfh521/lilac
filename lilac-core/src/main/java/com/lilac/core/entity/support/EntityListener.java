@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.entity.support;
 
 import java.io.Serializable;
@@ -19,7 +15,7 @@ import com.lilac.core.security.shiro.UserHolder;
 import com.lilac.core.util.DateUtils;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-12
  */
 

@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.security.entity;
 
 import javax.persistence.Entity;
@@ -13,7 +9,7 @@ import com.lilac.core.annotation.I18NMessage;
 import com.lilac.core.entity.BaseEntity;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-4-26
  */
 @Entity

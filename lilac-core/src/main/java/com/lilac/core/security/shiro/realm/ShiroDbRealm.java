@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.security.shiro.realm;
 
 import org.apache.shiro.authc.AuthenticationException;
@@ -27,7 +23,7 @@ import com.lilac.core.util.EncodeUtils;
 import com.lilac.core.util.StringUtils;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-15
  */
 public class ShiroDbRealm extends AuthorizingRealm {

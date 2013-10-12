@@ -1,11 +1,7 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.service;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-2
  */
 @SuppressWarnings("serial")

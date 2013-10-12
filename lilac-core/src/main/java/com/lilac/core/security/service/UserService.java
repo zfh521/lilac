@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.security.service;
 
 import org.springframework.stereotype.Service;
@@ -15,7 +11,7 @@ import com.lilac.core.util.StringUtils;
 import com.lilac.core.util.security.DigestUtils;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-2
  */
 @Service

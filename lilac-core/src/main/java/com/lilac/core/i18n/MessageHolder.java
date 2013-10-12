@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.i18n;
 
 import java.util.Locale;
@@ -15,7 +11,7 @@ import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.util.Assert;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-7
  */
 public final class MessageHolder implements InitializingBean {

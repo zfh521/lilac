@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.util;
 
 import java.util.Date;
@@ -9,7 +5,7 @@ import java.util.Date;
 import org.apache.commons.lang3.time.DateFormatUtils;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-3
  */
 public class DateUtils extends org.apache.commons.lang3.time.DateUtils {

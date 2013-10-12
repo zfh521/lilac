@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.i18n;
 
 import java.text.MessageFormat;
@@ -14,7 +10,7 @@ import org.springframework.context.support.AbstractMessageSource;
 import com.lilac.core.i18n.service.I18NMessageService;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-7
  */
 public class I18NMessageSource extends AbstractMessageSource {

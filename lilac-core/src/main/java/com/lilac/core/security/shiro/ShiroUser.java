@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.security.shiro;
 
 import java.io.Serializable;
@@ -9,7 +5,7 @@ import java.io.Serializable;
 import com.lilac.core.security.entity.UserInfo;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-15
  */
 public class ShiroUser implements Serializable {

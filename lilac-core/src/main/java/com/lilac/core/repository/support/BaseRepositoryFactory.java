@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.repository.support;
 
 import static org.springframework.data.querydsl.QueryDslUtils.QUERY_DSL_PRESENT;
@@ -20,7 +16,7 @@ import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 import org.springframework.data.repository.core.RepositoryMetadata;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-10
  */
 public class BaseRepositoryFactory<T, ID extends Serializable> extends JpaRepositoryFactory {

@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.util;
 
 import java.util.ArrayList;
@@ -16,7 +12,7 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-9
  */
 public class CollectionUtils extends org.springframework.util.CollectionUtils {

@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.util.jdbc;
 
 import static org.junit.Assert.assertEquals;
@@ -19,7 +15,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-4-25
  */
 public class DialectUtilsTest {

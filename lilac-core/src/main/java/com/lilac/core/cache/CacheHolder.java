@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.cache;
 
 import org.slf4j.Logger;
@@ -15,7 +11,7 @@ import org.springframework.util.Assert;
 import com.lilac.core.util.BeanUtils;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-22
  */
 public final class CacheHolder implements InitializingBean {

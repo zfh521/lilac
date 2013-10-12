@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.sys.entity;
 
 import javax.persistence.OneToMany;
@@ -10,7 +6,7 @@ import com.lilac.core.entity.BaseEntity;
 import com.lilac.core.security.entity.Organization;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-7
  */
 public class SpaceDefinition extends BaseEntity {

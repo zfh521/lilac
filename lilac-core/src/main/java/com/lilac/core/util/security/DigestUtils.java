@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.util.security;
 
 import java.io.IOException;
@@ -15,7 +11,7 @@ import org.apache.commons.lang3.Validate;
 import com.lilac.core.util.ExceptionUtils;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-16
  */
 public class DigestUtils {

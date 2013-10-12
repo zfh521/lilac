@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.i18n.service;
 
 import static org.junit.Assert.assertEquals;
@@ -14,7 +10,7 @@ import com.lilac.core.AbstractTransactionalTests;
 import com.lilac.core.i18n.MessageHolder;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-23
  */
 public class MessageHolderTest extends AbstractTransactionalTests {

@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.i18n;
 
 import javax.persistence.Entity;
@@ -9,7 +5,7 @@ import javax.persistence.Entity;
 import com.lilac.core.entity.BaseEntity;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-7
  */
 @SuppressWarnings("serial")

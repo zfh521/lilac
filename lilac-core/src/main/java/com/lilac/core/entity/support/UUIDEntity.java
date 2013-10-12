@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.entity.support;
 
 import javax.persistence.Column;
@@ -15,7 +11,7 @@ import org.hibernate.annotations.GenericGenerator;
 import com.lilac.core.entity.IdEntity;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-3
  */
 @SuppressWarnings("serial")

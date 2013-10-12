@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.sys.entity;
 
 import javax.persistence.Entity;
@@ -11,7 +7,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import com.lilac.core.entity.support.UUIDEntity;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-7
  */
 @Entity

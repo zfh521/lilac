@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.entity;
 
 import java.util.Date;
@@ -28,7 +24,7 @@ import com.lilac.core.security.entity.UserInfo;
 import com.lilac.core.sys.entity.SpaceDefinition;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-4-26
  */
 

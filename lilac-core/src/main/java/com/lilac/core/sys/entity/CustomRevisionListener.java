@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.sys.entity;
 
 import java.io.Serializable;
@@ -17,7 +13,7 @@ import com.lilac.core.sys.service.ObjectTypeService;
 import com.lilac.core.util.DateUtils;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-15
  */
 public class CustomRevisionListener implements EntityTrackingRevisionListener {

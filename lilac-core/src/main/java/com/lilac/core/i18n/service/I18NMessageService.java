@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.i18n.service;
 
 import org.springframework.cache.annotation.Cacheable;
@@ -13,7 +9,7 @@ import com.lilac.core.i18n.repository.I18NMessageRepository;
 import com.lilac.core.service.AbstractService;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-22
  */
 @Service

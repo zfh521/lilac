@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.web.security.controller;
 
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -13,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.lilac.web.controller.AbstractController;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-27
  */
 @Controller

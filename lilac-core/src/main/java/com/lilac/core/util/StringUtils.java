@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.util;
 
 import java.util.ArrayList;
@@ -22,7 +18,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-4-22
  */
 public final class StringUtils extends org.apache.commons.lang3.StringUtils {

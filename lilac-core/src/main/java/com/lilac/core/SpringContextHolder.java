@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core;
 
 import org.slf4j.Logger;
@@ -13,7 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-14
  */
 public class SpringContextHolder implements InitializingBean, ApplicationContextAware {

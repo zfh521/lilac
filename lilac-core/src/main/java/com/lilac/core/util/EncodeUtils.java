@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.util;
 
 import java.io.UnsupportedEncodingException;
@@ -14,7 +10,7 @@ import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-15
  */
 public class EncodeUtils {

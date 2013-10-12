@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.security.repository;
 
 import org.springframework.data.jpa.repository.Modifying;
@@ -11,7 +7,7 @@ import com.lilac.core.repository.BaseRepository;
 import com.lilac.core.security.entity.UserInfo;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-2
  */
 public interface UserRepository extends BaseRepository<UserInfo, String> {
@@ -32,7 +28,7 @@ public interface UserRepository extends BaseRepository<UserInfo, String> {
 }
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-25
  */
 interface UserRepositoryCustom {

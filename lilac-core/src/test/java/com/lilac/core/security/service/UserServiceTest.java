@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.security.service;
 
 import static org.junit.Assert.assertEquals;
@@ -22,7 +18,7 @@ import com.lilac.core.security.entity.UserInfo;
 import com.lilac.core.security.shiro.UserHolder;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-2
  */
 public class UserServiceTest extends AbstractTransactionalTests {

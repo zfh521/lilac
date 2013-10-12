@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core;
 
 import javax.sql.DataSource;
@@ -23,7 +19,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 /**
  * Spring profile:test development production
  * 
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-4-22
  */
 @ActiveProfiles("test")

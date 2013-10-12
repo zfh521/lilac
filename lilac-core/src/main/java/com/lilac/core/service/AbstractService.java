@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.service;
 
 import java.io.Serializable;
@@ -18,7 +14,7 @@ import com.lilac.core.entity.IdEntity;
 import com.lilac.core.repository.BaseRepository;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-16
  */
 @Transactional

@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.entity.support;
 
 import javax.persistence.GeneratedValue;
@@ -12,7 +8,7 @@ import javax.persistence.MappedSuperclass;
 import com.lilac.core.entity.IdEntity;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-11
  */
 @SuppressWarnings("serial")

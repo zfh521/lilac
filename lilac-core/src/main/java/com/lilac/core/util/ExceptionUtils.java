@@ -1,14 +1,10 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.util;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-15
  */
 public class ExceptionUtils {

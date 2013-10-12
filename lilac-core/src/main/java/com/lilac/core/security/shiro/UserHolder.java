@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.security.shiro;
 
 import org.apache.shiro.SecurityUtils;
@@ -12,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import com.lilac.core.security.entity.UserInfo;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-16
  */
 public final class UserHolder {

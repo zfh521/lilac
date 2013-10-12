@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.security.shiro.realm;
 
 import org.apache.shiro.SecurityUtils;
@@ -12,7 +8,7 @@ import org.junit.Test;
 import com.lilac.core.AbstractTransactionalTests;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-15
  */
 public class ShiroTest extends AbstractTransactionalTests {

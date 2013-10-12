@@ -1,14 +1,10 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.util;
 
 import java.util.Locale;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-23
  */
 public final class LocaleUtils {

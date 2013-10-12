@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.util.security;
 
 import java.security.GeneralSecurityException;
@@ -18,7 +14,7 @@ import javax.crypto.spec.SecretKeySpec;
 import com.lilac.core.util.ExceptionUtils;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-16
  */
 public class CryptoUtils {

@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.core.sys.entity;
 
 import java.util.Date;
@@ -19,7 +15,7 @@ import com.lilac.core.entity.support.GeneratedIdEntity;
 import com.lilac.core.security.entity.UserInfo;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-10
  */
 @Entity

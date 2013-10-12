@@ -1,7 +1,3 @@
-/*
- * Copyright 2013 Jimmy Leung
- */
-
 package com.lilac.web.controller;
 
 import java.text.SimpleDateFormat;
@@ -15,7 +11,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 
 /**
- * @author Jimmy Leung
+ * @author andy
  * @since 2013-5-6
  */
 public abstract class AbstractController {
