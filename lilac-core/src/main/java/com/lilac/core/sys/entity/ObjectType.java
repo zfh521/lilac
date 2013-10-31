@@ -4,14 +4,14 @@ import javax.persistence.Entity;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.lilac.core.entity.support.UUIDEntity;
+import com.lilac.core.entity.BaseEntity;
 
 /**
  * @author andy
  * @since 2013-5-7
  */
 @Entity
-public class ObjectType extends UUIDEntity {
+public class ObjectType extends BaseEntity {
 
     /**
      * 

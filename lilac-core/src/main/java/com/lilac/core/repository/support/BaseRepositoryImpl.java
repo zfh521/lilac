@@ -24,6 +24,7 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
 
     protected final Logger      log = LoggerFactory.getLogger(getClass());
 
+    @SuppressWarnings("unused")
     private final EntityManager em;
 
     /**

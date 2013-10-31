@@ -29,7 +29,7 @@ public class Organization extends BaseEntity {
     @ManyToOne
     private Organization       parentOrganization;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "parentOrganization")
-    private List<Organization> childOrganization;
+    private List<Organization> childOrganizations;
     @OneToMany
     private List<UserInfo>     users;
 
@@ -104,17 +104,17 @@ public class Organization extends BaseEntity {
     }
 
     /**
-     * @return the childOrganization
+     * @return the childOrganizations
      */
-    public List<Organization> getChildOrganization() {
-        return childOrganization;
+    public List<Organization> getChildOrganizations() {
+        return childOrganizations;
     }
 
     /**
-     * @param childOrganization the childOrganization to set
+     * @param childOrganizations the childOrganizations to set
      */
-    public void setChildOrganization(List<Organization> childOrganization) {
-        this.childOrganization = childOrganization;
+    public void setChildOrganizations(List<Organization> childOrganizations) {
+        this.childOrganizations = childOrganizations;
     }
 
     /**

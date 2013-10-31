@@ -42,7 +42,7 @@ public class SpringContextHolder implements InitializingBean, ApplicationContext
     private void showSuccessMsg() {
         log.info("***************************************************************");
         log.info("***************************************************************");
-        log.info("*****************LILAC START SUCCESSED*************************");
+        log.info("*****************LILAC START SUCCESSFULLY*************************");
         log.info("***************************************************************");
         log.info("***************************************************************");
     }

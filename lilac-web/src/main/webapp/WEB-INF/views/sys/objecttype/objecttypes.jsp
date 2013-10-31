@@ -25,12 +25,12 @@
 				</div>
 			</div>
 			<div class="box-content">
-				<form class="form-horizontal" action="${ctx}/sys/objectType">
+				<form class="form-horizontal" action="${ctx}/sys/objecttypes">
 					<div class="span4">
 						<div class="control-group">
 							<label class="control-label" for="typeahead">Auto complete </label>
 							<div class="controls">
-								<input type="text" class="typeahead" id="typeahead" data-provide="typeahead" data-items="4"
+								<input type="text" name="Q_EQ_.objectTypeId" class="typeahead" id="typeahead" data-provide="typeahead" data-items="4"
 									data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
 							</div>
 						</div>

@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.InitBinder;
  */
 public abstract class AbstractController {
 
-    protected final Logger log = LoggerFactory.getLogger(getClass());
+    protected final Logger     log       = LoggerFactory.getLogger(getClass());
+
+    public final static String PAGE_SIZE = "50";
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {

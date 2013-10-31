@@ -21,7 +21,7 @@
 	</appender>
 	<!-- project default level -->
 	<logger name="com.lilac" level="INFO" />
-	<logger name="druid.sql" level="WARN" />
+	<logger name="druid.sql" level="INFO" />
 
 	<root level="INFO">
 		<appender-ref ref="console" />
