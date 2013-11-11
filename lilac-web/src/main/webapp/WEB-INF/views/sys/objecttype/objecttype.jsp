@@ -16,9 +16,6 @@ $(document).ready(function() {
 		}
 	});
 });
-function loadMask() {
-
-}
 </script>
 </head>
 <body>
@@ -27,7 +24,7 @@ function loadMask() {
 			<div class="box-header well" data-original-title>
 				<h2>
 					<i class="icon-edit"></i>
-					<lilac:message code="LBT_OBJECT_TYPE"></lilac:message>
+					<lilac:msg code="LBT_OBJECT_TYPE"></lilac:msg>
 				</h2>
 				<div class="box-icon">
 					<a href="#" class="btn btn-minimize btn-round"><i class="icon-chevron-up"></i></a>

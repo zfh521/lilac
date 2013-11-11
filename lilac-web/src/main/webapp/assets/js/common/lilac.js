@@ -712,7 +712,7 @@ $.extend( $.fn.dataTableExt.oPagination, {
 					loading: true,
 					modalOverflow: true,
 					clickHide:false,
-					spinner: '<div class="loading-spinner" style="width: 400px; margin-left: -200px;"></div>'
+					spinner: '<div class="loading-spinner" style="width: 400px; margin-left: -200px;">loading......</div>'
 				};
 				var setings = $.extend({},defaults,options);
 				maskdiv.modal(setings);

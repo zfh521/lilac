@@ -16,7 +16,7 @@
 	<properties>
 		<!-- 主要依赖库的版本定义 -->
 		<lilac.version>1.0.0-SNAPSHOT</lilac.version>
-		<spring.version>3.2.4.RELEASE</spring.version>
+		<spring.version>3.2.5.RELEASE</spring.version>
 		<hibernate.version>4.2.6.Final</hibernate.version>
 		<spring-data-jpa.version>1.4.1.RELEASE</spring-data-jpa.version>
 		<sitemesh.version>2.4.2</sitemesh.version>
@@ -32,7 +32,9 @@
 		<fastjson.version>1.1.35</fastjson.version>
 		<ehcache.version>2.6.6</ehcache.version>
 		<commons-codec.version>1.7</commons-codec.version>
-
+		<guava.version>15.0</guava.version>
+		<jackson.version>2.2.3</jackson.version>
+		
 		<!-- Plugin的属性定义 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jdk.version>1.6</jdk.version>
@@ -174,14 +176,26 @@
 			<version>${hibernate-validator.version}</version>
 		</dependency>
 
-		<!-- JSON begin -->
+		<!-- fastjson begin -->
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>${fastjson.version}</version>
+		</dependency> -->
+		<!-- fastjson end -->
+		
+		<!-- jackson -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
 		</dependency>
-		<!-- JSON end -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
 
 		<!-- LOGGING begin -->
 		<dependency>
@@ -232,6 +246,13 @@
 			<artifactId>h2</artifactId>
 			<version>${h2.version}</version>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
 		</dependency>
 
 	</dependencies>

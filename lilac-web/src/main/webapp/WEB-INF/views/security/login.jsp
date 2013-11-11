@@ -49,7 +49,7 @@
 					</div>
 					<div class="clearfix"></div>
 					<p class="center span5">
-						<button type="submit" class="btn btn-primary"><lilac:message code="MSG_LOGIN" defaultMsg="登录"/></button>
+						<button type="submit" class="btn btn-primary"><lilac:msg code="MSG_LOGIN" defaultMsg="登录"/></button>
 					</p>
 				</fieldset>
 			</lilac:form>

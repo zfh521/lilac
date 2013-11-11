@@ -17,7 +17,7 @@
 		<war.name>lilac</war.name>
 		<!-- 主要依赖库的版本定义 -->
 		<lilac.version>1.0.0-SNAPSHOT</lilac.version>
-		<spring.version>3.2.4.RELEASE</spring.version>
+		<spring.version>3.2.5.RELEASE</spring.version>
 		<shiro.version>1.2.1</shiro.version>
 		<sitemesh.version>2.4.2</sitemesh.version>
 		<slf4j.version>1.7.2</slf4j.version>
@@ -65,14 +65,14 @@
 			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
 			<version>2.1</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>opensymphony</groupId>
 			<artifactId>sitemesh</artifactId>

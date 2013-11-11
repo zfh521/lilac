@@ -66,7 +66,7 @@
 <script src="${ctx}/assets/js/common/lilac.js?v=${empty version ? timestamp :version}" type="text/javascript"></script>
 <script type="text/javascript">
 jQuery.extend(jQuery.validator.messages, {
-	required: "<lilac:message code='WARN_FIELD_REQUIRED' defaultMsg='This field is required.'/>",
+	required: "<lilac:msg code='WARN_FIELD_REQUIRED' defaultMsg='This field is required.'/>",
 	remote: "Please fix this field.",
 	email: "Please enter a valid email address.",
 	url: "Please enter a valid URL.",

@@ -1,8 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
 <%@ taglib prefix="lilac" uri="/WEB-INF/tlds/lilac.tld"%>
-<c:set var="ctx" value="${pageContext.request.contextPath}" />
+<lilac:set var="ctx" value="${pageContext.request.contextPath}" />
 <shiro:user>
 	<!-- topbar starts -->
 	<div class="navbar">
