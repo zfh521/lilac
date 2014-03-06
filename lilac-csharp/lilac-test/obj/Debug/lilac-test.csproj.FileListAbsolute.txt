@@ -1,0 +1,5 @@
+F:\Project\lilac\lilac-csharp\lilac-test\bin\Debug\lilac-test.dll
+F:\Project\lilac\lilac-csharp\lilac-test\bin\Debug\lilac-test.pdb
+F:\Project\lilac\lilac-csharp\lilac-test\obj\Debug\lilac-test.csprojResolveAssemblyReference.cache
+F:\Project\lilac\lilac-csharp\lilac-test\obj\Debug\lilac-test.dll
+F:\Project\lilac\lilac-csharp\lilac-test\obj\Debug\lilac-test.pdb

@@ -1,0 +1,12 @@
+E:\Visual Studio 2013\Projects\lilac-net\lilac-net\bin\Debug\lilac-net.exe.config
+E:\Visual Studio 2013\Projects\lilac-net\lilac-net\bin\Debug\lilac-net.exe
+E:\Visual Studio 2013\Projects\lilac-net\lilac-net\bin\Debug\lilac-net.pdb
+E:\Visual Studio 2013\Projects\lilac-net\lilac-net\obj\Debug\lilac-net.csprojResolveAssemblyReference.cache
+E:\Visual Studio 2013\Projects\lilac-net\lilac-net\obj\Debug\lilac_net.Properties.Resources.resources
+E:\Visual Studio 2013\Projects\lilac-net\lilac-net\obj\Debug\lilac-net.csproj.GenerateResource.Cache
+E:\Visual Studio 2013\Projects\lilac-net\lilac-net\obj\Debug\lilac-net.exe
+E:\Visual Studio 2013\Projects\lilac-net\lilac-net\obj\Debug\lilac-net.pdb
+E:\Visual Studio 2013\Projects\lilac-net\lilac-net\obj\Debug\lilac_net.view.sys.LoginForm.resources
+F:\Project\lilac\lilac-net\lilac-net\bin\Debug\lilac-net.exe.config
+F:\Project\lilac\lilac-net\lilac-net\obj\Debug\lilac-net.exe
+F:\Project\lilac\lilac-net\lilac-net\obj\Debug\lilac-net.pdb

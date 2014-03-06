@@ -1,38 +1,185 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.lilac</groupId>
+	<groupId>com.snail.lilac</groupId>
 	<artifactId>lilac-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>lilac parent</name>
+	<name>lilac</name>
 	<description>Project For Lilac</description>
-	<url>https://github.com/lcj325/lilac</url>
-	<inceptionYear>2013</inceptionYear>
-	<developers>
-		<developer>
-			<name>Jimmy Leung</name>
-			<email>lcj325@gmail.com</email>
-			<roles>
-				<role>Software Architect</role>
-			</roles>
-		</developer>
-	</developers>
-	<modules>
-		<module>../lilac-core</module>
-		<module>../lilac-web</module>
-	</modules>
 	<repositories>
-		<!-- 如有Nexus私服, 取消注释并指向正确的服务器地址. <repository> <id>nexus</id> <name>Team 
-			Nexus Repository</name> <url>http://localhost:8081/nexus/content/groups/public</url> 
-			</repository> <repository> <id>central</id> <name>Central Repository</name> 
-			<url>http://repo.maven.apache.org/maven2</url> <snapshots> <enabled>false</enabled> 
-			</snapshots> </repository> -->
+		<repository>
+			<id>sonatype</id>
+			<name>Sonatype repository</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+		</repository>
 	</repositories>
+	<properties>
+		<jdk.version>1.7</jdk.version>
+		<sourceEncoding>UTF-8</sourceEncoding>
+		<javaSourceCompatibility>1.7</javaSourceCompatibility>
+		<javaTargetCompatibility>1.7</javaTargetCompatibility>
+		<currentJavaPath>${JAVA_HOME}</currentJavaPath>
+		<downloadSources>true</downloadSources>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-	<!-- 设定插件仓库 如有Nexus私服, 取消注释并指向正确的服务器地址. <pluginRepositories> <pluginRepository> 
-		<id>nexus</id> <name>Team Nexus Repository</name> <url>http://localhost:8081/nexus/content/groups/public</url> 
-		<snapshots> <enabled>false</enabled> </snapshots> </pluginRepository> </pluginRepositories> -->
+		<!-- Versions of jars -->
+		<lilac.version>1.0.0-SNAPSHOT</lilac.version>
+		<spring.version>4.0.2.RELEASE</spring.version>
+		<jackson.version>2.2.3</jackson.version>
+		<slf4j.version>1.7.2</slf4j.version>
+		<logback.version>1.0.9</logback.version>
+		<commons-lang3.version>3.1</commons-lang3.version>
+		<junit.version>4.11</junit.version>
+		<mockito.version>1.9.5</mockito.version>
+		<commonsLogging.version>1.1.3</commonsLogging.version>
+
+		<!-- Versions of plugins -->
+		<versionPluginCheckstyle>2.6</versionPluginCheckstyle>
+		<versionPluginChangelog>2.2</versionPluginChangelog>
+		<versionProjectInfoReports>2.1.2</versionProjectInfoReports>
+		<versionPluginChanges>2.3</versionPluginChanges>
+		<versionPluginJavadoc>2.7</versionPluginJavadoc>
+		<versionPluginDependency>2.2</versionPluginDependency>
+		<versionPluginDeploy>2.5</versionPluginDeploy>
+		<versionPluginSurefire>2.6</versionPluginSurefire>
+		<versionPluginClean>2.4.1</versionPluginClean>
+		<versionPluginSource>2.1.2</versionPluginSource>
+		<versionPluginWar>2.1.1</versionPluginWar>
+		<versionPluginResources>2.4.3</versionPluginResources>
+		<versionPluginSite>2.1.1</versionPluginSite>
+		<versionPluginInstall>2.3.1</versionPluginInstall>
+		<versionPluginEclipse>2.9</versionPluginEclipse>
+		<versionPluginjar>2.3.1</versionPluginjar>
+		<versionPluginCompile>3.1</versionPluginCompile>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${spring.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${spring.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- jackson -->
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-core</artifactId>
+				<version>${jackson.version}</version>
+			</dependency>
+
+			<!-- LOGGING begin -->
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+				<version>${commonsLogging.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>ch.qos.logback</groupId>
+				<artifactId>logback-classic</artifactId>
+				<version>${logback.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+
+			<!-- GENERAL UTILS begin -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons-lang3.version}</version>
+			</dependency>
+			<!-- GENERAL UTILS end -->
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-core</artifactId>
+				<version>${mockito.version}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
@@ -234,35 +381,8 @@
 			</plugin>
 		</plugins>
 	</reporting>
-	<properties>
-		<sourceEncoding>UTF-8</sourceEncoding>
-		<javaSourceCompatibility>1.6</javaSourceCompatibility>
-		<javaTargetCompatibility>1.6</javaTargetCompatibility>
-		<currentJavaPath>${JAVA_HOME}</currentJavaPath>
-		<downloadSources>true</downloadSources>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-		<!-- Versions of plugins -->
-		<versionPluginCheckstyle>2.6</versionPluginCheckstyle>
-		<versionPluginChangelog>2.2</versionPluginChangelog>
-		<versionProjectInfoReports>2.1.2</versionProjectInfoReports>
-		<versionPluginChanges>2.3</versionPluginChanges>
-		<versionPluginJavadoc>2.7</versionPluginJavadoc>
-		<versionPluginDependency>2.2</versionPluginDependency>
-		<versionPluginDeploy>2.5</versionPluginDeploy>
-		<versionPluginSurefire>2.6</versionPluginSurefire>
-		<versionPluginClean>2.4.1</versionPluginClean>
-		<versionPluginSource>2.1.2</versionPluginSource>
-		<versionPluginWar>2.1.1</versionPluginWar>
-		<versionPluginResources>2.4.3</versionPluginResources>
-		<versionPluginSite>2.1.1</versionPluginSite>
-		<versionPluginInstall>2.3.1</versionPluginInstall>
-		<versionPluginEclipse>2.9</versionPluginEclipse>
-		<versionPluginjar>2.3.1</versionPluginjar>
-		<versionPluginCompile>3.1</versionPluginCompile>
-	</properties>
 	<scm>
 		<url>https://github.com/lcj325/lilac.git</url>
-		<developerConnection>Jimmy</developerConnection>
+		<developerConnection>andy</developerConnection>
 	</scm>
 </project>

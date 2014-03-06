@@ -400,7 +400,7 @@
 	<tag>
 		<description>Retrieves the message with the given code, or text if code isn't resolvable. The HTML escaping flag participates in a page-wide or application-wide setting (i.e. by HtmlEscapeTag or a "defaultHtmlEscape" context-param in web.xml).</description>
 		<name>msg</name>
-		<tag-class>com.lilac.web.tags.MessageTag</tag-class>
+		<tag-class>com.snail.lilac.web.tags.MessageTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
 			<description>A MessageSourceResolvable argument (direct or through JSP EL). Fits nicely when used in conjunction with Spring's own validation error classes which all implement the MessageSourceResolvable interface. For example, this allows you to iterate over all of the errors in a form, passing each error (using a runtime expression) as the value of this 'message' attribute, thus effecting the easy display of such error messages.</description>
@@ -466,7 +466,7 @@
 	<tag>
 		<description>Retrieves the message with the given code, or text if code isn't resolvable. The HTML escaping flag participates in a page-wide or application-wide setting (i.e. by HtmlEscapeTag or a "defaultHtmlEscape" context-param in web.xml).</description>
 		<name>labelDisplay</name>
-		<tag-class>com.lilac.web.tags.MessageTag</tag-class>
+		<tag-class>com.snail.lilac.web.tags.MessageTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
 			<description>A MessageSourceResolvable argument (direct or through JSP EL). Fits nicely when used in conjunction with Spring's own validation error classes which all implement the MessageSourceResolvable interface. For example, this allows you to iterate over all of the errors in a form, passing each error (using a runtime expression) as the value of this 'message' attribute, thus effecting the easy display of such error messages.</description>
@@ -3007,7 +3007,7 @@
 	<tag>
 		<description>Renders a form field label in an HTML 'label' tag.</description>
 		<name>label</name>
-		<tag-class>com.lilac.web.tags.form.LabelTag</tag-class>
+		<tag-class>com.snail.lilac.web.tags.form.LabelTag</tag-class>
 		<body-content>JSP</body-content>
 		<attribute>
 			<description>Path to property for data binding</description>

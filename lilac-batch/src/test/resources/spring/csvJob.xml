@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:cache="http://www.springframework.org/schema/cache" xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd"
+	default-lazy-init="true">
+	<description>csv job config </description>
+
+	<batch:job id="csvJob">
+		<batch:listeners>
+			<batch:listener ref="csvJobListener" />
+		</batch:listeners>
+		<batch:step id="csvStep">
+			<batch:tasklet transaction-manager="transactionManager">
+				<batch:chunk reader="csvReader" writer="csvWriter"
+					processor="csvProcessor" commit-interval="50" retry-limit="5" skip-limit="5">
+					<batch:retryable-exception-classes>
+						<batch:include class="com.snail.lilac.batch.BatchException" />
+					</batch:retryable-exception-classes>
+					<batch:skippable-exception-classes>
+						<batch:include class="java.lang.NullPointerException" />
+					</batch:skippable-exception-classes>
+				</batch:chunk>
+			</batch:tasklet>
+		</batch:step>
+	</batch:job>
+
+	<bean id="csvReader" class="com.snail.lilac.batch.sample.csv.CSVReader"
+		scope="step">
+		<property name="resource" value="classpath:#{jobParameters['inputFilePath']}" />
+		<property name="lineMapper">
+			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+				<property name="lineTokenizer" ref="lineTokenizer"></property>
+				<property name="fieldSetMapper">
+					<bean
+						class="org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper">
+						<property name="prototypeBeanName" value="csvData"></property>
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="retryTimeOutTemplate" class="org.springframework.retry.support.RetryTemplate">
+		<property name="retryPolicy">
+			<bean class="org.springframework.retry.policy.TimeoutRetryPolicy">
+				<property name="timeout" value="3000" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="csvWriter" class="com.snail.lilac.batch.sample.csv.CSVWriter"
+		scope="step">
+		<property name="resource" value="classpath:#{jobParameters['outFilePath']}" />
+		<property name="lineAggregator">
+			<bean
+				class="org.springframework.batch.item.file.transform.DelimitedLineAggregator">
+				<property name="delimiter" value=","></property>
+				<property name="fieldExtractor">
+					<bean
+						class="org.springframework.batch.item.file.transform.BeanWrapperFieldExtractor">
+						<property name="names" value="id,name,course,score"></property>
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="csvProcessor" class="com.snail.lilac.batch.sample.csv.CSVProcessor"
+		scope="step">
+		<property name="targetObject" ref="csvDataBuilder"></property>
+		<property name="targetMethod" value="doProcess"></property>
+		<property name="arguments">
+			<array>
+				<ref bean="csvData" />
+			</array>
+		</property>
+	</bean>
+
+	<bean id="csvDataBuilder" class="com.snail.lilac.batch.sample.csv.CSVDataBuilder">
+	</bean>
+
+	<bean id="lineTokenizer"
+		class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+		<property name="delimiter" value=","></property>
+		<property name="names">
+			<list>
+				<value>id</value>
+				<value>name</value>
+				<value>course</value>
+				<value>score</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>

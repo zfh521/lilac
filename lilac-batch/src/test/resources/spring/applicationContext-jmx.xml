@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:cache="http://www.springframework.org/schema/cache" xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd"
+	default-lazy-init="true">
+	<description>Jmx Job config </description>
+	<context:component-scan base-package="com.snail.lilac">
+	</context:component-scan>
+
+	<bean id="jobOperator"
+		class="org.springframework.batch.core.launch.support.SimpleJobOperator"
+		p:jobExplorer-ref="jobExplorer" p:jobLauncher-ref="jobLauncher"
+		p:jobRepository-ref="jobRepository" p:jobRegistry-ref="jobRegistry" />
+
+	<bean id="jobExplorer"
+		class="org.springframework.batch.core.explore.support.JobExplorerFactoryBean"
+		p:dataSource-ref="dataSource" />
+
+	<bean id="jobLauncher"
+		class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+		<property name="jobRepository" ref="jobRepository" />
+		<property name="taskExecutor">
+			<bean class="org.springframework.core.task.SimpleAsyncTaskExecutor" />
+		</property>
+	</bean>
+
+	<bean id="jobRegistry"
+		class="org.springframework.batch.core.configuration.support.MapJobRegistry"></bean>
+
+	<bean
+		class="org.springframework.batch.core.configuration.support.AutomaticJobRegistrar">
+		<property name="applicationContextFactories">
+			<bean
+				class="org.springframework.batch.core.configuration.support.ClasspathXmlApplicationContextsFactoryBean">
+				<property name="resources" value="classpath*:/spring/simpleJob.xml"></property>
+			</bean>
+		</property>
+		<property name="jobLoader">
+			<bean
+				class="org.springframework.batch.core.configuration.support.DefaultJobLoader">
+				<property name="jobRegistry" ref="jobRegistry"></property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="jobRunner" class="com.snail.lilac.batch.sample.jmx.JmxJobRunnerImpl">
+		<property name="jobOperator" ref="jobOperator"></property>
+	</bean>
+
+	<bean id="exporter" class="org.springframework.jmx.export.MBeanExporter"
+		lazy-init="false">
+		<property name="beans">
+			<map>
+				<entry key="bean:name=myJobRunner" value-ref="jobRunner"></entry>
+			</map>
+		</property>
+		<property name="assembler">
+			<bean
+				class="org.springframework.jmx.export.assembler.InterfaceBasedMBeanInfoAssembler">
+				<property name="managedInterfaces">
+					<list>
+						<value>com.snail.lilac.batch.sample.jmx.JmxJobRunner</value>
+					</list>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="registry" class="org.springframework.remoting.rmi.RmiRegistryFactoryBean">
+		<property name="port" value="1099" />
+	</bean>
+
+
+	<context:property-placeholder
+		ignore-resource-not-found="true"
+		location="classpath*:spring/application.properties,
+          			  classpath*:spring/application.development.properties" />
+
+	<bean id="jobRepository"
+		class="org.springframework.batch.core.repository.support.JobRepositoryFactoryBean"
+		p:dataSource-ref="dataSource" p:transactionManager-ref="transactionManager" />
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		lazy-init="true">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 数据源配置, 使用Druid数据库连接池 -->
+	<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<!-- 配置初始化大小、最小、最大 -->
+		<property name="initialSize" value="${druid.initialSize}" />
+		<property name="minIdle" value="${druid.minIdle}" />
+		<property name="maxActive" value="${druid.maxActive}" />
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="60000" />
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<property name="validationQuery" value="${druid.oracle.validationQuery}" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		<property name="testWhileIdle" value="true" />
+		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxPoolPreparedStatementPerConnectionSize"
+			value="20" />
+		<!-- 配置监控统计拦截的filters -->
+		<property name="filters" value="stat,slf4j" />
+	</bean>
+
+</beans>

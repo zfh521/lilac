@@ -12,7 +12,7 @@
 		<property name="cacheManager" ref="shiroCacheManager" />
 	</bean>
 
-	<bean id="shiroDbRealm" class="com.lilac.core.security.shiro.realm.ShiroDbRealm">
+	<bean id="shiroDbRealm" class="com.snail.lilac.core.security.shiro.realm.ShiroDbRealm">
 		<property name="userService" ref="userService" />
 		<property name="credentialsMatcher">
 			<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
@@ -28,7 +28,7 @@
 		<property name="cacheManager" ref="ehCacheManagerFactory" />
 	</bean>
 	
-	<bean id="custom" class="com.lilac.web.security.filter.CustomAuthenticationFilter" lazy-init="false"></bean>
+	<bean id="custom" class="com.snail.lilac.web.security.filter.CustomAuthenticationFilter" lazy-init="false"></bean>
 	
 	<!-- Shiro Filter -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean" depends-on="userRepository">

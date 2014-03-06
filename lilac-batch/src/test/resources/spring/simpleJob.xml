@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:cache="http://www.springframework.org/schema/cache" xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd"
+	default-lazy-init="true">
+	<description>simple job config </description>
+
+	<bean id="idIncrementer"
+		class="org.springframework.batch.core.launch.support.RunIdIncrementer">
+	</bean>
+
+	<batch:job id="simpleJob" incrementer="idIncrementer">
+		<batch:step id="helloWorldStep" next="commandStep">
+			<batch:tasklet ref="helloWordTasklet" />
+		</batch:step>
+		<batch:step id="commandStep">
+			<batch:tasklet ref="commandTasklet" />
+			<batch:next on="*" to="successStep" />
+			<batch:next on="FAILED" to="failStep" />
+		</batch:step>
+		<batch:step id="successStep">
+			<batch:tasklet ref="successTasklet" />
+		</batch:step>
+		<batch:step id="failStep">
+			<batch:tasklet ref="failTasklet" />
+		</batch:step>
+	</batch:job>
+
+	<bean id="decider" class="com.snail.lilac.batch.sample.RandomDecider" />
+	<batch:job id="simpleJob2" incrementer="idIncrementer">
+		<batch:step id="helloWorldStep2" next="commandStep2">
+			<batch:tasklet ref="helloWordTasklet" />
+		</batch:step>
+		<batch:decision decider="decider" id="commandStep2">
+			<batch:next on="*" to="successStep2" />
+			<batch:next on="FAILED" to="failStep2" />
+		</batch:decision>
+		<batch:step id="successStep2">
+			<batch:tasklet ref="successTasklet" />
+		</batch:step>
+		<batch:step id="failStep2">
+			<batch:tasklet ref="failTasklet" />
+		</batch:step>
+	</batch:job>
+
+	<bean id="commandTasklet"
+		class="org.springframework.batch.core.step.tasklet.SystemCommandTasklet">
+		<property name="command" value="ping localhost " />
+		<property name="timeout" value="5000" />
+		<property name="interruptOnCancel" value="true" />
+	</bean>
+
+</beans>

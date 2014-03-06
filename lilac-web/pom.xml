@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.lilac</groupId>
+		<groupId>com.snail.lilac</groupId>
 		<artifactId>lilac-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../lilac-parent</relativePath>
@@ -17,7 +17,7 @@
 		<war.name>lilac</war.name>
 		<!-- 主要依赖库的版本定义 -->
 		<lilac.version>1.0.0-SNAPSHOT</lilac.version>
-		<spring.version>3.2.5.RELEASE</spring.version>
+		<spring.version>4.0.2.RELEASE</spring.version>
 		<shiro.version>1.2.1</shiro.version>
 		<sitemesh.version>2.4.2</sitemesh.version>
 		<slf4j.version>1.7.2</slf4j.version>
@@ -42,8 +42,23 @@
 	<!-- 依赖项定义 -->
 	<dependencies>
 		<dependency>
-			<groupId>com.lilac</groupId>
-			<artifactId>lilac-core</artifactId>
+			<groupId>com.snail.lilac</groupId>
+			<artifactId>lilac-util</artifactId>
+			<version>${lilac.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.snail.lilac</groupId>
+			<artifactId>lilac-model</artifactId>
+			<version>${lilac.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.snail.lilac</groupId>
+			<artifactId>lilac-repository</artifactId>
+			<version>${lilac.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.snail.lilac</groupId>
+			<artifactId>lilac-service</artifactId>
 			<version>${lilac.version}</version>
 		</dependency>
 		<!-- WEB begin -->
