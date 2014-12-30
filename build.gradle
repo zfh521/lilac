@@ -1,0 +1,171 @@
+apply from: "./libraries.gradle"
+
+allprojects {
+    repositories {
+        //mavenCentral()
+        maven {
+            name 'oschina'
+            url "http://maven.oschina.net/content/groups/public"
+        }
+    }
+}
+
+buildscript {
+    repositories {
+        //mavenCentral()
+        maven {
+            name 'oschina'
+            url "http://maven.oschina.net/content/groups/public"
+        }
+    }
+}
+
+
+ext {
+    lilacVersion      = "1.0.0-SNAPSHOT"
+    javaCompileLevel  = "1.8"
+}
+
+subprojects { subProject ->
+    apply plugin: 'eclipse'
+
+    defaultTasks 'build'
+
+    group = "com.snail"
+    version = rootProject.lilacVersion
+
+    // minimize changes, at least for now (gradle uses 'build' by default)..
+    buildDir = "target"
+
+    if ( subProject.name.startsWith( 'release' ) || subProject.name.startsWith( 'documentation' ) ) {
+        return;
+    }
+
+    // everything below here in the closure applies to java projects
+    apply plugin: 'java'
+
+    apply plugin: 'findbugs'
+    apply plugin: 'checkstyle'
+    apply plugin: 'build-dashboard'
+    apply plugin: 'project-report'
+
+    configurations {
+        provided { // todo : need to make sure these are non-exported
+            description = 'Non-exported compile-time dependencies.' }
+        jbossLoggingTool { description = "Dependencies for running the JBoss logging AnnotationProcessor tool" }
+        jaxb { description = 'Dependencies for running ant xjc (jaxb class generation)' }
+        configurations {
+            all*.exclude group: 'xml-apis', module: 'xml-apis'
+        }
+        animalSniffer
+        javaApiSignature
+    }
+
+    // appropriately inject the common dependencies into each sub-project
+    dependencies {
+        testCompile(libraries.junit)
+        testCompile(libraries.spring_test)
+    }
+
+    // mac-specific stuff ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    ext.toolsJar = file("${System.getProperty('java.home')}/../lib/tools.jar")
+    if ( ext.toolsJar.exists() ) {
+        dependencies{ testCompile files( toolsJar ) }
+    }
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    targetCompatibility = rootProject.javaCompileLevel
+    sourceCompatibility = rootProject.javaCompileLevel
+
+    task compile
+    compile.dependsOn compileJava, processResources, compileTestJava, processTestResources
+
+    sourceSets.main { compileClasspath += configurations.provided }
+
+    tasks.withType( JavaCompile.class ).all { task->
+        task.options.compilerArgs += [
+            "-nowarn",
+            "-proc:none",
+            "-encoding",
+            "UTF-8",
+            "-source",
+            rootProject.javaCompileLevel,
+            "-target",
+            rootProject.javaCompileLevel
+        ]
+    }
+
+    test {
+        systemProperties += System.properties.findAll { it.key.startsWith( "lilac.") }
+        maxHeapSize = "1024m"
+        // Not strictly needed but useful to attach a profiler:
+        jvmArgs '-XX:MaxPermSize=256m'
+    }
+
+    processTestResources.doLast( {
+        copy {
+            from( sourceSets.test.java.srcDirs ) {
+                include '**/*.properties'
+                include '**/*.xml'
+            }
+            into sourceSets.test.output.classesDir
+        }
+    } )
+
+    tasks.eclipse.dependsOn( cleanEclipse )
+
+    eclipse {
+        classpath {
+            //you can tweak the classpath of the Eclipse project by adding extra configurations:
+            plusConfigurations += [configurations.provided]
+
+            defaultOutputDir = file('bin')
+
+            //default settings for downloading sources and Javadoc:
+            downloadSources = true
+
+            downloadJavadoc = false
+        }
+    }
+
+    // specialized API/SPI checkstyle tasks ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    task checkstylePublicSources(type: Checkstyle) {
+        checkstyleClasspath = checkstyleMain.checkstyleClasspath
+        classpath = checkstyleMain.classpath
+        configFile = rootProject.file( 'support/checkstyle/checkstyle.xml' )
+        source subProject.sourceSets.main.java.srcDirs
+        // exclude generated sources
+        exclude '**/generated-src/**'
+        // because cfg package is a mess mainly from annotation stuff
+        ignoreFailures = false
+        showViolations = true
+        reports { xml { destination "$buildDir/reports/checkstyle/public.xml" } }
+    }
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    // Report configs ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    checkstyle {
+        toolVersion = '6.1'
+        sourceSets = [subProject.sourceSets.main]
+        configFile = rootProject.file( 'support/checkstyle/checkstyle.xml' )
+        showViolations = false
+        ignoreFailures = true
+    }
+    // exclude generated sources
+    // unfortunately this nice easy approach does not seem to work : http://forums.gradle.org/gradle/topics/specify_excludes_to_checkstyle_task
+    //checkstyleMain.exclude '**/generated-src/**'
+
+    findbugs {
+        sourceSets = [
+            subProject.sourceSets.main,
+            subProject.sourceSets.test
+        ]
+        ignoreFailures = true
+    }
+    //findbugsMain.exclude '**/generated-src/**'
+
+    task sourcesJar(type: Jar, dependsOn: compileJava) {
+        from sourceSets.main.allSource
+        classifier = 'sources'
+    }
+}

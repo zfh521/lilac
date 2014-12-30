@@ -1,0 +1,16 @@
+description="Lilac test"
+
+dependencies {
+    compile( project( ":lilac-model" ) )
+    compile( project( ":lilac-util" ) )
+    compile( project( ":lilac-repository" ) )
+    compile( libraries.mybatis )
+    compile( libraries.mybatis_spring )
+    compile( libraries.druid )
+    compile( libraries.oracle )
+    
+    testCompile( libraries.h2 )
+    testCompile( libraries.hibernate_entitymanager )
+    testCompile( libraries.spring_data_jpa )
+    
+}

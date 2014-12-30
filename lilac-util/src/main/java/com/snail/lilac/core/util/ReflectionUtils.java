@@ -14,14 +14,16 @@ import java.util.List;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
-import com.snail.lilac.core.logging.Logger;
-import com.snail.lilac.core.logging.LoggerFactory;
+
+import com.snail.lilac.logging.Logger;
+import com.snail.lilac.logging.LoggerFactory;
+
 import org.springframework.util.Assert;
 
 /**
  * 反射工具类. 提供调用getter/setter方法, 访问私有变量, 调用私有方法, 获取泛型类型Class, 被AOP过的真实类等工具函数.
  * 
- * @author andy
+ * @author Andy
  * @since 2013-4-26
  */
 @SuppressWarnings({ "rawtypes", "unchecked" })

@@ -5,7 +5,7 @@ import java.util.Date;
 import org.apache.commons.lang3.time.DateFormatUtils;
 
 /**
- * @author andy
+ * @author Andy
  * @since 2013-5-3
  */
 public class DateUtils extends org.apache.commons.lang3.time.DateUtils {

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 
 /**
- * @author andy
+ * @author Andy
  */
 public class SimpleJobTest extends AbstractBatchTests {
 

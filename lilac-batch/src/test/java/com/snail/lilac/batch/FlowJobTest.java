@@ -6,7 +6,7 @@ import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * @author andy
+ * @author Andy
  */
 public class FlowJobTest extends AbstractBatchTests {
 

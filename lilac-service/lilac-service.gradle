@@ -1,0 +1,21 @@
+description="Lilac service"
+
+dependencies {
+    
+    compile( project( ":lilac-repository" ) )
+    compile( project( ":lilac-model" ) )
+    compile( project( ":lilac-util" ) )
+    compile( libraries.spring_tx )
+    compile( libraries.spring_jdbc )
+    compile( libraries.shiro_core )
+    compile( libraries.shiro_ehcache )
+    compile( libraries.shiro_aspectj )
+    compile( libraries.shiro_spring )
+    compile( libraries.aspectjrt )
+    compile( libraries.aspectjweaver )
+    compile( libraries.guava )
+    compile( libraries.ehcache_core )
+    
+    testCompile( libraries.hibernate_validator )
+    
+}

@@ -6,7 +6,7 @@ import org.springframework.batch.item.adapter.ItemProcessorAdapter;
 import org.springframework.stereotype.Component;
 
 /**
- * @author andy
+ * @author Andy
  */
 @Component("csvProcessor")
 public class CSVProcessor extends ItemProcessorAdapter<CSVData, CSVData> {

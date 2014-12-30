@@ -1,7 +1,7 @@
 package com.snail.lilac.core.util;
 
 /**
- * @author andy
+ * @author Andy
  * @since 2013-5-10
  */
 public class BeanUtils extends org.springframework.beans.BeanUtils {

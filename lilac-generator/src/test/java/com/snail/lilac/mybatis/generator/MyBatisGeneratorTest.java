@@ -15,7 +15,7 @@ import org.mybatis.generator.logging.Log;
 import org.mybatis.generator.logging.LogFactory;
 
 /**
- * @author andy
+ * @author Andy
  */
 public class MyBatisGeneratorTest {
 

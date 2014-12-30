@@ -4,7 +4,7 @@ import java.util.Locale;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @author andy
+ * @author Andy
  * @since 2013-5-23
  */
 public final class LocaleUtils {

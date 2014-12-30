@@ -1,7 +1,9 @@
 .settings
 .classpath
 .project
+.gradle
 target
 bin
 .cache
 logs
+/build/

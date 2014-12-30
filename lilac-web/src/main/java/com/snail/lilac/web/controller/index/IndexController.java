@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.snail.lilac.web.controller.AbstractController;
 
 /**
- * @author andy
+ * @author Andy
  * @since 2013-5-6
  */
 @Controller

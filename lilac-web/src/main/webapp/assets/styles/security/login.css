@@ -1,0 +1,33 @@
+@CHARSET "UTF-8";
+
+html {
+	background: url(../img/login.jpg) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+body {
+	padding-top: 20px;
+	font-size: 16px;
+	background: transparent;
+}
+
+.container-header {
+	background: url(../img/logo.png) no-repeat;
+	height: 40px;
+	margin-top: 150px;
+	margin-bottom: 20px;
+	padding-top: 20px;
+}
+
+div.copyright-info {
+	color: #333;
+	font-size: 14px;
+	font-weight: bold;
+	position: relative;
+	left: 130px;
+	top: 5px;
+	text-align: left;
+}

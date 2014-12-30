@@ -4,7 +4,7 @@ import com.snail.lilac.core.logging.Logger;
 import com.snail.lilac.core.logging.LoggerFactory;
 
 /**
- * @author andy
+ * @author Andy
  */
 public class CSVDataBuilder {
 

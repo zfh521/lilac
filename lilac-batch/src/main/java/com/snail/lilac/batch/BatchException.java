@@ -3,7 +3,7 @@ package com.snail.lilac.batch;
 import org.springframework.remoting.RemoteAccessException;
 
 /**
- * @author andy
+ * @author Andy
  */
 public class BatchException extends RemoteAccessException {
 

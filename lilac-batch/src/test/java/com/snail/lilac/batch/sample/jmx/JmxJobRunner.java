@@ -5,7 +5,7 @@ import org.springframework.batch.core.launch.JobInstanceAlreadyExistsException;
 import org.springframework.batch.core.launch.NoSuchJobException;
 
 /**
- * @author andy
+ * @author Andy
  */
 public interface JmxJobRunner {
 

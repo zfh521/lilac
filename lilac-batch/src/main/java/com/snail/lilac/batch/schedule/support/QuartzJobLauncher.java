@@ -21,7 +21,7 @@ import org.springframework.batch.core.launch.JobParametersNotFoundException;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
 /**
- * @author andy
+ * @author Andy
  */
 public class QuartzJobLauncher extends QuartzJobBean {
 

@@ -1,7 +1,7 @@
 package com.snail.lilac.core;
 
 /**
- * @author andy
+ * @author Andy
  */
 public class HelloWorld {
 
@@ -13,6 +13,6 @@ public class HelloWorld {
     }
 
     private static String name() {
-        return "andy";
+        return "Andy";
     }
 }

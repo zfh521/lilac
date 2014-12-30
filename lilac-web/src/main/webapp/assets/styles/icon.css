@@ -1,0 +1,125 @@
+@CHARSET "UTF-8";
+
+.icon-cog {
+	background: url(img/cog.png) no-repeat !important;
+}
+
+.iconCls_add {
+	background-image: url(img/add.png ) !important;
+}
+
+.iconCls_edit {
+	background-image: url(img/edit.png ) !important;
+}
+
+.iconCls_delete {
+	background-image: url(img/delete.png ) !important;
+}
+
+.iconCls_accept {
+	background-image: url(img/accept.png ) !important;
+}
+
+.iconCls_cancel {
+	background-image: url(img/cancel.png ) !important;
+}
+
+.iconCls_arrowRedo {
+	background-image: url(img/arrow_redo.png ) !important;
+}
+
+.iconCls_trash {
+	background-image: url(img/trash.png ) !important;
+}
+
+.iconCls_magnifier {
+	background-image: url(img/magnifier.png ) !important;
+}
+
+.iconCls_shift {
+	background-image: url(img/shift.png ) !important;
+}
+
+.iconCls_wrench {
+	background-image: url(img/wrench.png ) !important;
+}
+
+.iconCls_user {
+	background-image: url(img/user.png ) !important;
+}
+
+.iconCls_userAdd {
+	background-image: url(img/user_add.png ) !important;
+}
+
+.iconCls_userDelete {
+	background-image: url(img/user_delete.png ) !important;
+}
+
+.iconCls_userEdit {
+	background-image: url(img/user_edit.png ) !important;
+}
+
+.iconCls_group {
+	background-image: url(img/group.png ) !important;
+}
+
+.iconCls_groupAdd {
+	background-image: url(img/group_add.png ) !important;
+}
+
+.iconCls_groupDelete {
+	background-image: url(img/group_delete.png ) !important;
+}
+
+.iconCls_groupEdit {
+	background-image: url(img/group_edit.png ) !important;
+}
+
+.iconCls_groupLink {
+	background-image: url(img/group_link.png ) !important;
+}
+
+.iconCls_tableSave {
+	background-image: url(img/table_save.png ) !important;
+}
+
+.iconCls_pageExcel {
+	background-image: url(img/page_excel.png ) !important;
+}
+
+.iconCls_pageExcel {
+	background-image: url(img/page_excel.png ) !important;
+}
+
+.iconCls_applicationForm {
+	background-image: url(img/application_form.png ) !important;
+}
+
+.iconCls_applicationFormAdd {
+	background-image: url(img/application_form_add.png ) !important;
+}
+
+.iconCls_applicationFormEdit {
+	background-image: url(img/application_form_edit.png ) !important;
+}
+
+.iconCls_applicationFormDelete {
+	background-image: url(img/application_form_delete.png ) !important;
+}
+
+.iconCls_applicationFormMagnify {
+	background-image: url(img/application_form_magnify.png ) !important;
+}
+
+.iconCls_applicationGo {
+	background-image: url(img/application_go.png ) !important;
+}
+
+.iconCls_start {
+	background-image: url(img/start.gif ) !important;
+}
+
+.iconCls_end {
+	background-image: url(img/end.gif ) !important;
+}

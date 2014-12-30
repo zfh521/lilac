@@ -3,7 +3,7 @@ package com.snail.lilac.batch.resources;
 import org.springframework.core.io.Resource;
 
 /**
- * @author andy
+ * @author Andy
  */
 public class ImageResource {
 

@@ -18,7 +18,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
 /**
- * @author andy
+ * @author Andy
  * @since 2013-4-22
  */
 public final class StringUtils extends org.apache.commons.lang3.StringUtils {
@@ -664,7 +664,8 @@ public final class StringUtils extends org.apache.commons.lang3.StringUtils {
         for (int i = 0; i < localePart.length(); i++) {
             char ch = localePart.charAt(i);
             if (ch != '_' && ch != ' ' && !Character.isLetterOrDigit(ch)) {
-                throw new IllegalArgumentException("Locale part \"" + localePart + "\" contains invalid characters");
+                throw new IllegalArgumentException("Locale part \"" + localePart
+                                                   + "\" contains invalid characters");
             }
         }
     }
@@ -676,7 +677,8 @@ public final class StringUtils extends org.apache.commons.lang3.StringUtils {
      * @return the RFC 3066 compliant language tag as String
      */
     public static String toLanguageTag(Locale locale) {
-        return locale.getLanguage() + (hasText(locale.getCountry()) ? "-" + locale.getCountry() : "");
+        return locale.getLanguage()
+               + (hasText(locale.getCountry()) ? "-" + locale.getCountry() : "");
     }
 
     // ---------------------------------------------------------------------
@@ -878,7 +880,8 @@ public final class StringUtils extends org.apache.commons.lang3.StringUtils {
      * @return a <code>Properties</code> instance representing the array contents, or <code>null</code> if the array to
      * process was <code>null</code> or empty
      */
-    public static Properties splitArrayElementsIntoProperties(String[] array, String delimiter, String charsToDelete) {
+    public static Properties splitArrayElementsIntoProperties(String[] array, String delimiter,
+                                                              String charsToDelete) {
 
         if (ObjectUtils.isEmpty(array)) {
             return null;
@@ -986,7 +989,8 @@ public final class StringUtils extends org.apache.commons.lang3.StringUtils {
      * @return an array of the tokens in the list
      * @see #tokenizeToStringArray
      */
-    public static String[] delimitedListToStringArray(String str, String delimiter, String charsToDelete) {
+    public static String[] delimitedListToStringArray(String str, String delimiter,
+                                                      String charsToDelete) {
         if (str == null) {
             return new String[0];
         }
@@ -1048,7 +1052,8 @@ public final class StringUtils extends org.apache.commons.lang3.StringUtils {
      * @param suffix the String to end each element with
      * @return the delimited String
      */
-    public static String collectionToDelimitedString(Collection<?> coll, String delim, String prefix, String suffix) {
+    public static String collectionToDelimitedString(Collection<?> coll, String delim,
+                                                     String prefix, String suffix) {
         if (CollectionUtils.isEmpty(coll)) {
             return "";
         }
@@ -1186,6 +1191,15 @@ public final class StringUtils extends org.apache.commons.lang3.StringUtils {
         }
         str = toCamelCase(str);
         return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
+
+    /**
+     * @param username
+     * @return
+     */
+    public static String trimToUpperCase(String str) {
+        str = StringUtils.trimToEmpty(str);
+        return StringUtils.upperCase(str);
     }
 
 }

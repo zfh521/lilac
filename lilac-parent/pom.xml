@@ -25,7 +25,7 @@
 
 		<!-- Versions of jars -->
 		<lilac.version>1.0.0-SNAPSHOT</lilac.version>
-		<spring.version>4.0.2.RELEASE</spring.version>
+		<spring.version>4.1.2.RELEASE</spring.version>
 		<jackson.version>2.2.3</jackson.version>
 		<slf4j.version>1.7.2</slf4j.version>
 		<logback.version>1.0.9</logback.version>

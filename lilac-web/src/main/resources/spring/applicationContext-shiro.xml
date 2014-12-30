@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
 	default-lazy-init="true">
 
 	<description>Shiro Config</description>
@@ -12,8 +12,10 @@
 		<property name="cacheManager" ref="shiroCacheManager" />
 	</bean>
 
-	<bean id="shiroDbRealm" class="com.snail.lilac.core.security.shiro.realm.ShiroDbRealm">
+	<bean id="shiroDbRealm"
+		class="com.snail.lilac.service.security.shiro.realm.ShiroDbRealm">
 		<property name="userService" ref="userService" />
+		<property name="i18NService" ref="i18NService" />
 		<property name="credentialsMatcher">
 			<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
 				<property name="hashAlgorithmName" value="SHA-1" />
@@ -27,23 +29,27 @@
 	<bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
 		<property name="cacheManager" ref="ehCacheManagerFactory" />
 	</bean>
-	
-	<bean id="custom" class="com.snail.lilac.web.security.filter.CustomAuthenticationFilter" lazy-init="false"></bean>
-	
+
+	<bean id="customAuth"
+		class="com.snail.lilac.web.controller.security.CustomAuthenticationFilter"
+		lazy-init="false"></bean>
+
 	<!-- Shiro Filter -->
-	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean" depends-on="userRepository">
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean"
+		depends-on="userRepository">
 		<property name="securityManager" ref="securityManager" />
 		<property name="loginUrl" value="/login" />
 		<property name="successUrl" value="/" />
 		<property name="filterChainDefinitions">
 			<value>
-				/login = custom
+				/login = customAuth
 				/logout = logout
 				/assets/** = anon
+				/app/** = anon
+				/charisma/** = anon
 				/api/** = anon
 				/register/** = anon
-				/admin/** = roles[admin]
-				/** = user
+				/** = authc
 			</value>
 		</property>
 	</bean>

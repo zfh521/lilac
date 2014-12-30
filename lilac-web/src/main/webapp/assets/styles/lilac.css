@@ -1,0 +1,153 @@
+@CHARSET "UTF-8";
+
+@import url(icon.css);
+
+.login-body {
+	background: url(img/background.jpg) no-repeat;
+	/* 背景图垂直、水平均居中 */
+	background-position: center center;
+	/* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 */
+	background-attachment: fixed;
+	/* 让背景图基于容器大小伸缩 */
+	background-size: cover;
+	/* 设置背景颜色，背景图加载过程中会显示背景色 */
+	background-color: #f5f5f5;
+}
+
+.login-header {
+	height: 100%;
+	padding: 20px 0px;
+}
+
+.login-header-logo {
+	position: relative;
+	clear: both;
+	margin: 0 20px 0 0;
+	height: 40px;
+	background: url(img/logo.png) no-repeat;
+}
+
+.login {
+	position: relative;
+	clear: both;
+	margin: 0 20px 0 0;
+	height: 256px;
+	background: url(img/login.png) no-repeat;
+}
+
+.app-header {
+	background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0%, #8fc33a),
+		color-stop(100%, #739b2e));
+	background-image: -webkit-linear-gradient(top, #8fc33a, #739b2e);
+	background-image: -moz-linear-gradient(top, #8fc33a, #739b2e);
+	background-image: -o-linear-gradient(top, #8fc33a, #739b2e);
+	background-image: -ms-linear-gradient(top, #8fc33a, #739b2e);
+	background-image: linear-gradient(top, #8fc33a, #739b2e);
+	border-bottom: 1px solid #567422
+}
+
+.app-header-logo {
+	cursor: pointer;
+	width: 132px;
+	height: 40px;
+	margin: 5px 5px 0px;
+	background: url(img/logo.png) no-repeat;
+}
+
+.app-header a {
+	cursor: pointer;
+	display: inline;
+	float: left;
+	width: 80px;
+	text-align: center;
+	height: 56px;
+	padding: 1px 2px 0px;
+	text-decoration: none;
+	color: #fff;
+	text-shadow: 0px -1px rgba(0, 0, 0, 0.2);
+	overflow: hidden;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	margin: 2px;
+}
+
+.app-header a:hover {
+	background: rgba(0, 0, 0, 0.25);
+}
+
+.app-header-n1 {
+	background: url(img/n1.png) no-repeat;
+	display: block;
+	margin: 0px auto 3px;
+	height: 32px;
+	width: 32px;
+}
+
+.app-header-n2 {
+	background: url(img/n2.png) no-repeat;
+	display: block;
+	margin: 0px auto 3px;
+	height: 32px;
+	width: 32px;
+}
+
+.app-header-n3 {
+	background: url(img/n3.png) no-repeat;
+	display: block;
+	margin: 0px auto 3px;
+	height: 32px;
+	width: 32px;
+}
+
+.app-header-n4 {
+	background: url(img/n4.png) no-repeat;
+	display: block;
+	margin: 0px auto 3px;
+	height: 32px;
+	width: 32px;
+}
+
+.app-header-n5 {
+	background: url(img/n5.png) no-repeat;
+	display: block;
+	margin: 0px auto 3px;
+	height: 32px;
+	width: 32px;
+}
+
+.app-header-n6 {
+	background: url(img/n6.png) no-repeat;
+	display: block;
+	margin: 0px auto 3px;
+	height: 32px;
+	width: 32px;
+}
+
+.app-header-n7 {
+	background: url(img/n7.png) no-repeat;
+	display: block;
+	margin: 0px auto 3px;
+	height: 32px;
+	width: 32px;
+}
+
+div#footer .copyright {
+	width: 60%;
+	float: left;
+	display: inline;
+	text-align: right;
+	color: #fff;
+	height: 15px;
+	line-height: 15px;
+}
+
+div#footer .user-info {
+	width: 20%;
+	float: right;
+	display: inline;
+	text-align: left;
+	color: #fff;
+	height: 15px;
+	line-height: 15px;
+}

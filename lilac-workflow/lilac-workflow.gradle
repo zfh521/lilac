@@ -1,0 +1,10 @@
+description="Lilac workflow"
+
+dependencies {
+    
+    compile( libraries.activiti_engine )
+    compile( libraries.activiti_spring ) {
+        exclude(group: 'org.springframework')
+    }
+    
+}

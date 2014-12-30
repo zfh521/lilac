@@ -8,7 +8,7 @@ import org.springframework.batch.core.job.flow.FlowExecutionStatus;
 import org.springframework.batch.core.job.flow.JobExecutionDecider;
 
 /**
- * @author andy
+ * @author Andy
  */
 public class RandomDecider implements JobExecutionDecider {
 

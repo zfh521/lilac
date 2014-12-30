@@ -7,11 +7,12 @@ import org.springframework.util.Assert;
 import org.springframework.web.servlet.tags.form.AbstractHtmlElementTag;
 import org.springframework.web.servlet.tags.form.TagWriter;
 
-import com.snail.lilac.core.service.i18n.MessageHolder;
+import com.snail.lilac.AppContext;
 import com.snail.lilac.core.util.StringUtils;
+import com.snail.lilac.service.i18n.I18NService;
 
 /**
- * @author andy
+ * @author Andy
  * @since 2013-6-28
  */
 @SuppressWarnings("serial")
@@ -50,6 +51,16 @@ public class LabelTag extends AbstractHtmlElementTag {
      * The value of the '{@code for}' attribute.
      */
     private String              forId;
+
+    private I18NService         i18NService;
+
+    /**
+     * 
+     */
+    public LabelTag(){
+        super();
+        i18NService = AppContext.getBean("i18NService", I18NService.class);
+    }
 
     /**
      * Set the value of the '{@code for}' attribute.
@@ -109,7 +120,6 @@ public class LabelTag extends AbstractHtmlElementTag {
     protected int writeTagContent(TagWriter tagWriter) throws JspException {
         tagWriter.startTag(LABEL_TAG);
         tagWriter.writeAttribute(FOR_ATTRIBUTE, resolveFor());
-        tagWriter.writeAttribute(CLASS_ATTRIBUTE, "control-label");
         writeDefaultAttributes(tagWriter);
         tagWriter.appendValue(resolveMessage());
         tagWriter.forceBlock();
@@ -125,10 +135,12 @@ public class LabelTag extends AbstractHtmlElementTag {
     protected String resolveMessage() throws JspException {
         String labelValue = null;
         if (StringUtils.isNotBlank(getCode())) {
-            labelValue = MessageHolder.getMessage(getCode(), getDefaultMsg(), LocaleContextHolder.getLocale());
+            labelValue = i18NService.getMessage(getCode(), getDefaultMsg(),
+                                                LocaleContextHolder.getLocale());
         } else {
-            labelValue = MessageHolder.getMessage(LBL_PREFIX + StringUtils.toUnderScoreCase(this.getPath()),
-                                                  getDefaultMsg(), LocaleContextHolder.getLocale());
+            labelValue = i18NService.getMessage(LBL_PREFIX
+                                                        + StringUtils.toUnderScoreCase(this.getPath()),
+                                                getDefaultMsg(), LocaleContextHolder.getLocale());
         }
         return labelValue;
     }

@@ -1,0 +1,21 @@
+apply plugin: 'antlr'
+
+description="Lilac util"
+
+dependencies {
+    
+    compile( libraries.spring_core )
+    compile( libraries.spring_beans ) {
+        exclude(group: 'commons-logging', module: 'commons-logging')
+    }
+    compile( libraries.spring_context )
+    compile( libraries.spring_context_support )
+    compile( libraries.jackson_databind )
+    compile( libraries.jackson_core )
+    compile( libraries.slf4j_api )
+    compile( libraries.logback_classic )
+    compile( libraries.commons_lang3 )
+    compile( libraries.commons_codec )
+    compile( libraries.validation_api )
+    
+}

@@ -1,0 +1,211 @@
+:lilac-util:dependencies
+
+------------------------------------------------------------
+Project :lilac-util - Lilac util
+------------------------------------------------------------
+
+animalSniffer
+No dependencies
+
+antlr - The Antlr libraries to be used for this project.
+No dependencies
+
+archives - Configuration for archive artifacts.
+No dependencies
+
+checkstyle - The Checkstyle libraries to be used for this project.
+\--- com.puppycrawl.tools:checkstyle:6.1
+     +--- antlr:antlr:2.7.7
+     +--- org.antlr:antlr4-runtime:4.3
+     |    +--- org.abego.treelayout:org.abego.treelayout.core:1.0.1
+     |    \--- org.antlr:antlr4-annotations:4.3
+     +--- commons-beanutils:commons-beanutils-core:1.8.3
+     +--- commons-cli:commons-cli:1.2
+     \--- com.google.guava:guava:18.0
+
+compile - Compile classpath for source set 'main'.
++--- org.springframework:spring-core:4.1.2.RELEASE
+|    \--- commons-logging:commons-logging:1.1.3
++--- org.springframework:spring-beans:4.1.2.RELEASE
+|    \--- org.springframework:spring-core:4.1.2.RELEASE (*)
++--- org.springframework:spring-context:4.1.2.RELEASE
+|    +--- org.springframework:spring-aop:4.1.2.RELEASE
+|    |    +--- aopalliance:aopalliance:1.0
+|    |    +--- org.springframework:spring-beans:4.1.2.RELEASE (*)
+|    |    \--- org.springframework:spring-core:4.1.2.RELEASE (*)
+|    +--- org.springframework:spring-beans:4.1.2.RELEASE (*)
+|    +--- org.springframework:spring-core:4.1.2.RELEASE (*)
+|    \--- org.springframework:spring-expression:4.1.2.RELEASE
+|         \--- org.springframework:spring-core:4.1.2.RELEASE (*)
++--- org.springframework:spring-context-support:4.1.2.RELEASE
+|    +--- org.springframework:spring-beans:4.1.2.RELEASE (*)
+|    +--- org.springframework:spring-context:4.1.2.RELEASE (*)
+|    \--- org.springframework:spring-core:4.1.2.RELEASE (*)
++--- com.fasterxml.jackson.core:jackson-databind:2.2.3
+|    +--- com.fasterxml.jackson.core:jackson-annotations:2.2.3
+|    \--- com.fasterxml.jackson.core:jackson-core:2.2.3
++--- com.fasterxml.jackson.core:jackson-core:2.2.3
++--- org.slf4j:slf4j-api:1.7.7
++--- ch.qos.logback:logback-classic:1.0.9
+|    +--- ch.qos.logback:logback-core:1.0.9
+|    \--- org.slf4j:slf4j-api:1.7.2 -> 1.7.7
++--- org.apache.commons:commons-lang3:3.3.2
+\--- commons-codec:commons-codec:1.9
+
+configurations
+No dependencies
+
+default - Configuration for default artifacts.
++--- org.springframework:spring-core:4.1.2.RELEASE
+|    \--- commons-logging:commons-logging:1.1.3
++--- org.springframework:spring-beans:4.1.2.RELEASE
+|    \--- org.springframework:spring-core:4.1.2.RELEASE (*)
++--- org.springframework:spring-context:4.1.2.RELEASE
+|    +--- org.springframework:spring-aop:4.1.2.RELEASE
+|    |    +--- aopalliance:aopalliance:1.0
+|    |    +--- org.springframework:spring-beans:4.1.2.RELEASE (*)
+|    |    \--- org.springframework:spring-core:4.1.2.RELEASE (*)
+|    +--- org.springframework:spring-beans:4.1.2.RELEASE (*)
+|    +--- org.springframework:spring-core:4.1.2.RELEASE (*)
+|    \--- org.springframework:spring-expression:4.1.2.RELEASE
+|         \--- org.springframework:spring-core:4.1.2.RELEASE (*)
++--- org.springframework:spring-context-support:4.1.2.RELEASE
+|    +--- org.springframework:spring-beans:4.1.2.RELEASE (*)
+|    +--- org.springframework:spring-context:4.1.2.RELEASE (*)
+|    \--- org.springframework:spring-core:4.1.2.RELEASE (*)
++--- com.fasterxml.jackson.core:jackson-databind:2.2.3
+|    +--- com.fasterxml.jackson.core:jackson-annotations:2.2.3
+|    \--- com.fasterxml.jackson.core:jackson-core:2.2.3
++--- com.fasterxml.jackson.core:jackson-core:2.2.3
++--- org.slf4j:slf4j-api:1.7.7
++--- ch.qos.logback:logback-classic:1.0.9
+|    +--- ch.qos.logback:logback-core:1.0.9
+|    \--- org.slf4j:slf4j-api:1.7.2 -> 1.7.7
++--- org.apache.commons:commons-lang3:3.3.2
+\--- commons-codec:commons-codec:1.9
+
+findbugs - The FindBugs libraries to be used for this project.
+\--- com.google.code.findbugs:findbugs:3.0.0
+     +--- com.google.code.findbugs:bcel-findbugs:6.0
+     +--- com.google.code.findbugs:annotations:3.0.0
+     +--- com.google.code.findbugs:jFormatString:3.0.0
+     +--- dom4j:dom4j:1.6.1
+     +--- jaxen:jaxen:1.1.6
+     +--- org.ow2.asm:asm-debug-all:5.0.2
+     \--- commons-lang:commons-lang:2.6
+
+findbugsPlugins - The FindBugs plugins to be used for this project.
+No dependencies
+
+javaApiSignature
+No dependencies
+
+jaxb - Dependencies for running ant xjc (jaxb class generation)
+No dependencies
+
+jbossLoggingTool - Dependencies for running the JBoss logging AnnotationProcessor tool
+No dependencies
+
+provided - Non-exported compile-time dependencies.
+No dependencies
+
+runtime - Runtime classpath for source set 'main'.
++--- org.springframework:spring-core:4.1.2.RELEASE
+|    \--- commons-logging:commons-logging:1.1.3
++--- org.springframework:spring-beans:4.1.2.RELEASE
+|    \--- org.springframework:spring-core:4.1.2.RELEASE (*)
++--- org.springframework:spring-context:4.1.2.RELEASE
+|    +--- org.springframework:spring-aop:4.1.2.RELEASE
+|    |    +--- aopalliance:aopalliance:1.0
+|    |    +--- org.springframework:spring-beans:4.1.2.RELEASE (*)
+|    |    \--- org.springframework:spring-core:4.1.2.RELEASE (*)
+|    +--- org.springframework:spring-beans:4.1.2.RELEASE (*)
+|    +--- org.springframework:spring-core:4.1.2.RELEASE (*)
+|    \--- org.springframework:spring-expression:4.1.2.RELEASE
+|         \--- org.springframework:spring-core:4.1.2.RELEASE (*)
++--- org.springframework:spring-context-support:4.1.2.RELEASE
+|    +--- org.springframework:spring-beans:4.1.2.RELEASE (*)
+|    +--- org.springframework:spring-context:4.1.2.RELEASE (*)
+|    \--- org.springframework:spring-core:4.1.2.RELEASE (*)
++--- com.fasterxml.jackson.core:jackson-databind:2.2.3
+|    +--- com.fasterxml.jackson.core:jackson-annotations:2.2.3
+|    \--- com.fasterxml.jackson.core:jackson-core:2.2.3
++--- com.fasterxml.jackson.core:jackson-core:2.2.3
++--- org.slf4j:slf4j-api:1.7.7
++--- ch.qos.logback:logback-classic:1.0.9
+|    +--- ch.qos.logback:logback-core:1.0.9
+|    \--- org.slf4j:slf4j-api:1.7.2 -> 1.7.7
++--- org.apache.commons:commons-lang3:3.3.2
+\--- commons-codec:commons-codec:1.9
+
+testCompile - Compile classpath for source set 'test'.
++--- org.springframework:spring-core:4.1.2.RELEASE
+|    \--- commons-logging:commons-logging:1.1.3
++--- org.springframework:spring-beans:4.1.2.RELEASE
+|    \--- org.springframework:spring-core:4.1.2.RELEASE (*)
++--- org.springframework:spring-context:4.1.2.RELEASE
+|    +--- org.springframework:spring-aop:4.1.2.RELEASE
+|    |    +--- aopalliance:aopalliance:1.0
+|    |    +--- org.springframework:spring-beans:4.1.2.RELEASE (*)
+|    |    \--- org.springframework:spring-core:4.1.2.RELEASE (*)
+|    +--- org.springframework:spring-beans:4.1.2.RELEASE (*)
+|    +--- org.springframework:spring-core:4.1.2.RELEASE (*)
+|    \--- org.springframework:spring-expression:4.1.2.RELEASE
+|         \--- org.springframework:spring-core:4.1.2.RELEASE (*)
++--- org.springframework:spring-context-support:4.1.2.RELEASE
+|    +--- org.springframework:spring-beans:4.1.2.RELEASE (*)
+|    +--- org.springframework:spring-context:4.1.2.RELEASE (*)
+|    \--- org.springframework:spring-core:4.1.2.RELEASE (*)
++--- com.fasterxml.jackson.core:jackson-databind:2.2.3
+|    +--- com.fasterxml.jackson.core:jackson-annotations:2.2.3
+|    \--- com.fasterxml.jackson.core:jackson-core:2.2.3
++--- com.fasterxml.jackson.core:jackson-core:2.2.3
++--- org.slf4j:slf4j-api:1.7.7
++--- ch.qos.logback:logback-classic:1.0.9
+|    +--- ch.qos.logback:logback-core:1.0.9
+|    \--- org.slf4j:slf4j-api:1.7.2 -> 1.7.7
++--- org.apache.commons:commons-lang3:3.3.2
++--- commons-codec:commons-codec:1.9
++--- junit:junit:4.11
+|    \--- org.hamcrest:hamcrest-core:1.3
+\--- org.springframework:spring-test:4.1.2.RELEASE
+     \--- org.springframework:spring-core:4.1.2.RELEASE (*)
+
+testRuntime - Runtime classpath for source set 'test'.
++--- org.springframework:spring-core:4.1.2.RELEASE
+|    \--- commons-logging:commons-logging:1.1.3
++--- org.springframework:spring-beans:4.1.2.RELEASE
+|    \--- org.springframework:spring-core:4.1.2.RELEASE (*)
++--- org.springframework:spring-context:4.1.2.RELEASE
+|    +--- org.springframework:spring-aop:4.1.2.RELEASE
+|    |    +--- aopalliance:aopalliance:1.0
+|    |    +--- org.springframework:spring-beans:4.1.2.RELEASE (*)
+|    |    \--- org.springframework:spring-core:4.1.2.RELEASE (*)
+|    +--- org.springframework:spring-beans:4.1.2.RELEASE (*)
+|    +--- org.springframework:spring-core:4.1.2.RELEASE (*)
+|    \--- org.springframework:spring-expression:4.1.2.RELEASE
+|         \--- org.springframework:spring-core:4.1.2.RELEASE (*)
++--- org.springframework:spring-context-support:4.1.2.RELEASE
+|    +--- org.springframework:spring-beans:4.1.2.RELEASE (*)
+|    +--- org.springframework:spring-context:4.1.2.RELEASE (*)
+|    \--- org.springframework:spring-core:4.1.2.RELEASE (*)
++--- com.fasterxml.jackson.core:jackson-databind:2.2.3
+|    +--- com.fasterxml.jackson.core:jackson-annotations:2.2.3
+|    \--- com.fasterxml.jackson.core:jackson-core:2.2.3
++--- com.fasterxml.jackson.core:jackson-core:2.2.3
++--- org.slf4j:slf4j-api:1.7.7
++--- ch.qos.logback:logback-classic:1.0.9
+|    +--- ch.qos.logback:logback-core:1.0.9
+|    \--- org.slf4j:slf4j-api:1.7.2 -> 1.7.7
++--- org.apache.commons:commons-lang3:3.3.2
++--- commons-codec:commons-codec:1.9
++--- junit:junit:4.11
+|    \--- org.hamcrest:hamcrest-core:1.3
+\--- org.springframework:spring-test:4.1.2.RELEASE
+     \--- org.springframework:spring-core:4.1.2.RELEASE (*)
+
+(*) - dependencies omitted (listed previously)
+
+BUILD SUCCESSFUL
+
+Total time: 4.773 secs

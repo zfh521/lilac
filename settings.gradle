@@ -1,0 +1,21 @@
+rootProject.name = "lilac"
+
+include "lilac-util"
+include "lilac-model"
+include "lilac-repository"
+include "lilac-workflow"
+include "lilac-service"
+include "lilac-web"
+/*include "lilac-test"
+include "lilac-batch"*/
+
+rootProject.children.each { project -> 
+    project.buildFileName = "${project.name}.gradle"
+    assert project.projectDir.isDirectory()
+    assert project.buildFile.exists()
+    assert project.buildFile.isFile()
+}
+
+
+
+

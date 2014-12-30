@@ -1,0 +1,22 @@
+apply plugin: "war"
+apply plugin: 'jetty'
+
+description="Lilac web"
+
+
+dependencies {
+    
+    compile( project( ":lilac-service" ) )
+    compile( project( ":lilac-repository" ) )
+    compile( project( ":lilac-model" ) )
+    compile( project( ":lilac-util" ) )
+    compile( libraries.shiro_web )
+    compile( libraries.spring_webmvc )
+    compile( libraries.jstl )
+    compile( libraries.servlet_api )
+    compile( libraries.jsp_api )
+    compile( libraries.sitemesh )
+    
+    testCompile( libraries.hibernate_validator )
+    
+}

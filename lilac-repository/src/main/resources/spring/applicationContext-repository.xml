@@ -15,23 +15,18 @@
 	default-lazy-init="true">
 	<description>spring repository config </description>
 
-	<context:component-scan base-package="com.snail.lilac.core.repository">
-	</context:component-scan>
-
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="configLocation" value="/mybatis/sqlMapConfig.xml"/>
+		<!-- <property name="configLocation" value="/mybatis/sqlMapConfig.xml"/> -->
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations">
 			<array>
-				<value>classpath*:com/snail/lilac/core/repository/*Mapper.xml</value>
-				<value>classpath*:com/snail/lilac/*/repository/*/*Mapper.xml</value>
+				<value>classpath*:com/snail/lilac/repository/*/*Mapper.xml</value>
 			</array>
 		</property>
 	</bean>
 	
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="annotationClass" value="org.springframework.stereotype.Repository"/>
-		<property name="basePackage" value="com.snail.lilac.core.repository" />
+		<property name="basePackage" value="com.snail.lilac.repository" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
 	</bean>
 
@@ -64,7 +59,7 @@
 			<property name="maxPoolPreparedStatementPerConnectionSize"
 				value="20" />
 			<!-- 配置监控统计拦截的filters -->
-			<property name="filters" value="stat" />
+			<property name="filters" value="stat,slf4j" />
 		</bean>
 	</beans>
 	<!-- local development环境 -->
@@ -99,13 +94,6 @@
 			<!-- 配置监控统计拦截的filters -->
 			<property name="filters" value="stat,slf4j" />
 		</bean>
-
-		<!-- 初始化数据表结构 与默认数据 -->
-		<jdbc:initialize-database data-source="dataSource"
-			ignore-failures="ALL">
-			<jdbc:script location="classpath*:data/oracle/import-data.sql" />
-		</jdbc:initialize-database>
-
 	</beans>
 
 	<!-- unit test环境 -->
@@ -140,7 +128,7 @@
 			<!-- 配置监控统计拦截的filters -->
 			<property name="filters" value="stat,slf4j" />
 		</bean>
-
+	
 		<!-- 初始化数据表结构 与默认数据 -->
 		<jdbc:initialize-database data-source="dataSource"
 			ignore-failures="ALL">

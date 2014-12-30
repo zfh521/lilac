@@ -1,0 +1,5 @@
+description="Lilac model"
+
+dependencies {
+    compile( project( ":lilac-util" ) )
+}

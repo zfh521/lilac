@@ -4,10 +4,10 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 /**
- * @author andy
+ * @author Andy
  * @since 2013-5-15
  */
-public class ExceptionUtils {
+public class ExceptionUtils extends org.apache.commons.lang3.exception.ExceptionUtils {
 
     /**
      * 将CheckedException转换为UncheckedException.
@@ -32,7 +32,8 @@ public class ExceptionUtils {
     /**
      * 判断异常是否由某些底层的异常引起.
      */
-    public static boolean isCausedBy(Exception ex, Class<? extends Exception>... causeExceptionClasses) {
+    public static boolean isCausedBy(Exception ex,
+                                     Class<? extends Exception>... causeExceptionClasses) {
         Throwable cause = ex.getCause();
         while (cause != null) {
             for (Class<? extends Exception> causeClass : causeExceptionClasses) {

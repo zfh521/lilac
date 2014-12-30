@@ -5,7 +5,7 @@ import java.util.Enumeration;
 import java.util.Iterator;
 
 /**
- * @author andy
+ * @author Andy
  * @since 2013-5-9
  */
 public class CollectionUtils extends org.springframework.util.CollectionUtils {

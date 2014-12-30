@@ -27,4 +27,22 @@ import org.springframework.web.servlet.tags.HtmlEscapeTag;
  */
 @SuppressWarnings({ "serial" })
 public class MessageTag extends org.springframework.web.servlet.tags.MessageTag {
+
+    private String defaultMsg;
+
+    /**
+     * @return the defaultMsg
+     */
+    public String getDefaultMsg() {
+        return this.defaultMsg;
+    }
+
+    /**
+     * @param defaultMsg the defaultMsg to set
+     */
+    public void setDefaultMsg(String defaultMsg) {
+        this.setText(defaultMsg);
+        this.defaultMsg = defaultMsg;
+    }
+
 }

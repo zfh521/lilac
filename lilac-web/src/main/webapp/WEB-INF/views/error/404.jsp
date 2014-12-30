@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>404 - 页面不存在</title>
+	<title>404 - Page not found</title>
 </head>
 
 <body>

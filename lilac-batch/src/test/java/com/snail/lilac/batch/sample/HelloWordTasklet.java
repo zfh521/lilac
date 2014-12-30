@@ -10,7 +10,7 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.stereotype.Component;
 
 /**
- * @author andy
+ * @author Andy
  */
 @Component("helloWordTasklet")
 public class HelloWordTasklet implements Tasklet {

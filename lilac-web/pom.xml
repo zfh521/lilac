@@ -17,7 +17,7 @@
 		<war.name>lilac</war.name>
 		<!-- 主要依赖库的版本定义 -->
 		<lilac.version>1.0.0-SNAPSHOT</lilac.version>
-		<spring.version>4.0.2.RELEASE</spring.version>
+		<spring.version>4.1.2.RELEASE</spring.version>
 		<shiro.version>1.2.1</shiro.version>
 		<sitemesh.version>2.4.2</sitemesh.version>
 		<slf4j.version>1.7.2</slf4j.version>
@@ -217,7 +217,7 @@
 		</dependency>
 
 		<!-- jetty -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.eclipse.jetty.aggregate</groupId>
 			<artifactId>jetty-webapp</artifactId>
 			<version>${jetty.version}</version>
@@ -228,7 +228,7 @@
 			<artifactId>jetty-jsp</artifactId>
 			<version>${jetty.version}</version>
 			<scope>test</scope>
-		</dependency>
+		</dependency> -->
 		<!-- TEST end -->
 	</dependencies>
 

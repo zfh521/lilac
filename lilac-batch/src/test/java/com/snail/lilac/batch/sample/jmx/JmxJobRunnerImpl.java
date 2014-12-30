@@ -6,7 +6,7 @@ import org.springframework.batch.core.launch.JobOperator;
 import org.springframework.batch.core.launch.NoSuchJobException;
 
 /**
- * @author andy
+ * @author Andy
  */
 public class JmxJobRunnerImpl implements JmxJobRunner {
 

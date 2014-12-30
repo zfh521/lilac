@@ -10,7 +10,7 @@ import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 /**
- * @author andy
+ * @author Andy
  * @since 2013-5-15
  */
 public class EncodeUtils {
@@ -86,7 +86,7 @@ public class EncodeUtils {
      * Xml 转码.
      */
     public static String escapeXml(String xml) {
-        return StringEscapeUtils.escapeXml(xml);
+        return StringEscapeUtils.escapeXml10(xml);
     }
 
     /**
