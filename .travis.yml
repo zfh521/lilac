@@ -1,0 +1,11 @@
+language: java
+
+jdk:
+  - oraclejdk8
+
+install:
+  - gradle build -x test
+
+notifications:
+  email:
+    - lcj325@gmail.com

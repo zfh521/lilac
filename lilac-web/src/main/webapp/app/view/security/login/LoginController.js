@@ -18,7 +18,7 @@ Ext.define('Lilac.view.security.login.LoginController', {
     var form = this.lookupReference('form');
 
     if (form.isValid()) {
-      form.up("window").mask('努力为您加载中', 'loading');
+      form.up("window").mask('loading');
       form.submit();
     }
   }

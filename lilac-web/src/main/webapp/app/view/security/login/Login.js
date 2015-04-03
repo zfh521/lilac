@@ -45,6 +45,12 @@ Ext.define('Lilac.view.security.login.Login', {
           standardSubmit: true,
           bodyStyle: 'margin: 80px 0px 0px;',
           flex: 2,
+          defaults: {
+            anchor: '100%',
+            padding: '10 5',
+            height: 30,
+            labelStyle: 'font-size:13px;font-weight:bold;'
+          },
           items: [{
             xtype: 'textfield',
             name: 'username',
@@ -66,24 +72,20 @@ Ext.define('Lilac.view.security.login.Login', {
             listeners: {
               specialKey: 'onSpecialKey'
             }
-          }/*, {
-            xtype: 'combobox',
-            name: 'organization',
-            fieldLabel: 'Organization',
-            reference: 'organization',
-            queryMode: 'local',
-            editable: false,
-            forceSelection: true,
-            displayField: 'name',
-            valueField: 'id',
-            bind: {
-              store: '{organizations}',
-              value: {
-                twoWay: false,
-                bindTo: '{defaultOrg}'
-              }
-            }
-          }*/]
+          }, {
+            xtype: 'checkbox',
+            name: 'rememberMe',
+            bind: '{rememberMe}',
+            boxLabel: 'Remember me',
+            boxLabelAlign: 'after',
+            padding: '0px 0px 0px 107px;'
+          }/*
+             * , { xtype: 'combobox', name: 'organization', fieldLabel:
+             * 'Organization', reference: 'organization', queryMode: 'local',
+             * editable: false, forceSelection: true, displayField: 'name',
+             * valueField: 'id', bind: { store: '{organizations}', value: {
+             * twoWay: false, bindTo: '{defaultOrg}' } } }
+             */]
         }]
       }],
       buttons: [{
