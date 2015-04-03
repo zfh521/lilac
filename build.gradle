@@ -2,7 +2,7 @@ apply from: "./libraries.gradle"
 
 allprojects {
     repositories {
-        //mavenCentral()
+        mavenCentral()
         maven {
             name 'oschina'
             url "http://maven.oschina.net/content/groups/public"
@@ -12,7 +12,7 @@ allprojects {
 
 buildscript {
     repositories {
-        //mavenCentral()
+        mavenCentral()
         maven {
             name 'oschina'
             url "http://maven.oschina.net/content/groups/public"
