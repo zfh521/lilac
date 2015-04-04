@@ -1,8 +1,8 @@
-Ext.define('Lilac.view.charts.BasicLine', {
+/*Ext.define('Lilac.view.charts.BasicLine', {
   extend: 'Ext.panel.Panel',
   width: 600,
   height: 400,
-  layout: 'fit',
+  title: 'test',
   items: {
     xtype: 'cartesian',
     store: {
@@ -96,4 +96,12 @@ Ext.define('Lilac.view.charts.BasicLine', {
       }
     }]
   }
+});
+ */
+Ext.define('Lilac.view.charts.BasicLine', {
+  extend: 'Ext.panel.Panel',
+  width: 600,
+  height: 400,
+  title: 'xxx',
+  html: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 });

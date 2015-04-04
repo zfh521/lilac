@@ -7,7 +7,7 @@ Ext.define("Lilac.view.main.NavHistory", {
       this.initialNavigate()
     }, this);
     Ext.util.History.on("change", function(b) {
-      this.navigate(b, true)
+      this.navigate(b, true);
     }, this)
   },
   notifyTabsLoaded: function() {

@@ -6,6 +6,15 @@ jdk:
 install:
   - gradle build -x test
 
+before_script:
+   - echo 'skip test'
+
+after_script:
+   - echo 'skip test'
+
+script:
+   - echo 'skip test'
+
 notifications:
   email:
     - lcj325@gmail.com

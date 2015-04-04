@@ -2,7 +2,7 @@ Ext.define('Lilac.view.main.Main', {
   extend: 'Lilac.ux.view.container.Viewport',
   requires: ['Lilac.ux.TabCloseMenu', 'Lilac.view.main.Header', 'Lilac.view.main.Footer', 'Lilac.view.main.NavPanel',
       'Lilac.view.main.ContentPanel', 'Lilac.view.main.ContentController', 'Lilac.view.main.MainController',
-      'Lilac.view.main.MainModel'],
+      'Lilac.controller.Failure', 'Lilac.view.main.MainModel'],
   xtype: 'lilac.view.main.main',
   alias: 'widget.mainviewport',
   controller: 'lilac.view.main.maincontroller',
@@ -34,12 +34,5 @@ Ext.define('Lilac.view.main.Main', {
     region: 'center',
     xtype: 'lilac.view.main.contentpanel',
     reference: 'mainContentTabPanel'
-  }],
-  setPageTitle: function(contentTitle) {
-    contentTitle = Ext.util.Format.stripTags(contentTitle);
-    if (!this.origTitle) {
-      this.origTitle = document.title;
-    }
-    document.title = contentTitle ? (contentTitle + " - " + this.origTitle) : this.origTitle
-  }
+  }]
 });

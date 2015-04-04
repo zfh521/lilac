@@ -1,8 +1,8 @@
 description="Lilac repository"
 
 dependencies {
+	compile( project( ":lilac-util" ) )
     compile( project( ":lilac-model" ) )
-    compile( project( ":lilac-util" ) )
     compile( libraries.mybatis )
     compile( libraries.mybatis_spring )
     compile( libraries.druid )

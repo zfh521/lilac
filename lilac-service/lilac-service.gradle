@@ -1,10 +1,10 @@
 description="Lilac service"
 
 dependencies {
-    
-    compile( project( ":lilac-repository" ) )
+	
+	compile( project( ":lilac-util" ) )    
     compile( project( ":lilac-model" ) )
-    compile( project( ":lilac-util" ) )
+    compile( project( ":lilac-repository" ) )
     compile( libraries.spring_tx )
     compile( libraries.spring_jdbc )
     compile( libraries.shiro_core )

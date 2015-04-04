@@ -2,6 +2,7 @@ Ext.define("Lilac.view.main.NavPanel", {
   extend: "Ext.panel.Panel",
   xtype: "lilac.view.main.navpanel",
   requires: ['Lilac.view.main.NavTree', 'Lilac.view.main.NavController', 'Lilac.view.main.NavModel'],
+  controller: 'lilac.view.main.navcontroller',
   reference: 'navPanel',
   layout: {
     type: 'accordion',
@@ -20,29 +21,37 @@ Ext.define("Lilac.view.main.NavPanel", {
           root: {
             expanded: false,
             children: [{
+              menuId: '1',
               text: "产品设置",
               iconCls: 'icon-cog',
               leaf: true,
-              url: "1"
+              iframe: false,
+              url: "app/view/charts/BasicLine.js"
             }, {
               text: "homework",
               iconCls: 'iconCls_tableSave',
               expanded: false,
               children: [{
-                text: "book report",
+                menuId: '2',
+                text: "BasicLine",
                 iconCls: 'iconCls_applicationGo',
                 leaf: true,
-                url: "2.html"
+                iframe: false,
+                url: "app/view/charts/BasicLine.js"
               }, {
+                menuId: '3',
                 text: "algebra",
                 iconCls: 'iconCls_start',
                 leaf: true,
+                iframe: true,
                 url: "3.html"
               }]
             }, {
+              menuId: '4',
               text: "buy lottery tickets",
               iconCls: 'iconCls_pageExcel',
               leaf: true,
+              iframe: true,
               url: "http://180.169.20.135:8099/bugfree/index.php"
             }]
           }

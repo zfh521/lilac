@@ -5,22 +5,12 @@ Ext.define('Lilac.view.main.MainController', {
   requires: ["Lilac.view.main.NavHistory"],
   init: function() {
   },
-  onUrlClick: function(view, record, e) {
-    this.handleUrlClick(view, record, e);
-  },
-  handleUrlClick: function(view, navModel, e) {
-    url = Lilac.view.main.NavHistory.cleanUrl(navModel.url);
-    if (this.opensNewWindow(e)) {
-      window.open(url);
-      view && view.selectUrl(url)
-    } else {
-      var mainContentTabPanel = this.lookupReference("mainContentTabPanel");
-      mainContentTabPanel.getController().loadMainContent(navModel);
-      this.getView().setPageTitle(navModel.title);
+  setPageTitle: function(contentTitle) {
+    contentTitle = Ext.util.Format.stripTags(contentTitle);
+    if (!this.origTitle) {
+      this.origTitle = document.title;
     }
-  },
-  opensNewWindow: function(b) {
-    return b.button === this.MIDDLE || b.shiftKey || b.ctrlKey
+    document.title = contentTitle ? (contentTitle + " - " + this.origTitle) : this.origTitle
   },
   onClickLogo: function(e) {
   },

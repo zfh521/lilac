@@ -9,6 +9,12 @@ Ext.define('Lilac.view.main.ContentPanel', {
   initComponent: function() {
     var me = this;
     Ext.apply(this, {
+      defaults: {
+        listeners: {
+          removed: "onCloseTab",
+          close: "onCloseTab"
+        }
+      },
       items: [{
         title: '我的桌面',
         xtype: 'dashboard',

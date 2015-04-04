@@ -23,6 +23,7 @@ buildscript {
 
 ext {
     lilacVersion      = "1.0.0-SNAPSHOT"
+    javaSourceCompileLevel = "1.8"
     javaCompileLevel  = "1.8"
 }
 
@@ -74,7 +75,7 @@ subprojects { subProject ->
     }
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    targetCompatibility = rootProject.javaCompileLevel
+    targetCompatibility = rootProject.javaSourceCompileLevel
     sourceCompatibility = rootProject.javaCompileLevel
 
     task compile
@@ -89,7 +90,7 @@ subprojects { subProject ->
             "-encoding",
             "UTF-8",
             "-source",
-            rootProject.javaCompileLevel,
+            rootProject.javaSourceCompileLevel,
             "-target",
             rootProject.javaCompileLevel
         ]
@@ -97,9 +98,9 @@ subprojects { subProject ->
 
     test {
         systemProperties += System.properties.findAll { it.key.startsWith( "lilac.") }
-        maxHeapSize = "1024m"
+        //maxHeapSize = "1024m"
         // Not strictly needed but useful to attach a profiler:
-        jvmArgs '-XX:MaxPermSize=256m'
+        jvmArgs '-XX:MetaspaceSize=256M'
     }
 
     processTestResources.doLast( {
